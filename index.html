@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raj Shekhar | Public Policy & Political Strategy</title>
+    <meta name="description" content="Public Policy Consultant and Political Strategist. From corporate law to the corridors of governance.">
+    <meta property="og:title" content="Raj Shekhar | Public Policy & Political Strategy">
+    <meta property="og:description" content="From corporate law to the corridors of governance.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --saffron-dark: #E8850F;
+            --saffron-light: #FFF3E6;
+            --white: #FFFFFF;
+            --green: #138808;
+            --green-dark: #0F6B06;
+            --green-light: #E8F5E6;
+            --black: #1A1A1A;
+            --gray-900: #212121;
+            --gray-700: #424242;
+            --gray-500: #6B6B6B;
+            --gray-300: #B0B0B0;
+            --gray-100: #F5F5F5;
+            --gray-50: #FAFAFA;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background: var(--white);
+            color: var(--gray-700);
+            line-height: 1.8;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.3;
+            color: var(--black);
+        }
+
+        ::selection { background: var(--saffron); color: var(--white); }
+
+        /* Indian Flag Bar */
+        .flag-bar {
+            height: 6px;
+            background: linear-gradient(to bottom, 
+                var(--saffron) 0%, var(--saffron) 33.33%, 
+                var(--white) 33.33%, var(--white) 66.66%, 
+                var(--green) 66.66%, var(--green) 100%);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1001;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 6px;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
+        }
+
+        .nav.scrolled {
+            border-bottom-color: var(--gray-100);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        .nav-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--black);
+            text-decoration: none;
+        }
+
+        .nav-logo span {
+            background: linear-gradient(135deg, var(--saffron) 0%, var(--green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--gray-500);
+            text-decoration: none;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--saffron) 0%, var(--green) 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--black); }
+        .nav-links a:hover::after { width: 100%; }
+
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--black);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10rem 3rem 6rem;
+            background: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Parliament Background Illustration */
+        .parliament-bg {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 300px;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .parliament-svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Profile Section at Top */
+        .hero-profile {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeUp 1s ease forwards;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-photo-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .profile-photo {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gray-300);
+            overflow: hidden;
+            border: 4px solid var(--white);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Tricolor Ring around Photo */
+        .profile-ring {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--saffron) 0deg 120deg,
+                var(--white) 120deg 240deg,
+                var(--green) 240deg 360deg
+            );
+            z-index: 1;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-profile h1 {
+            font-size: 2.5rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-profile .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--gray-500);
+            margin-bottom: 1rem;
+        }
+
+        .hero-profile .current-role {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--saffron-dark);
+        }
+
+        .profile-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .profile-links a {
+            width: 44px;
+            height: 44px;
+            border: 1px solid var(--gray-200);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray-500);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            background: var(--white);
+        }
+
+        .profile-links a:hover { 
+            border-color: var(--saffron); 
+            color: var(--saffron); 
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 153, 51, 0.2);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Hero Content */
+        .hero-content {
+            max-width: 800px;
+            text-align: center;
+            animation: fadeUp 1s ease 0.2s forwards;
+            opacity: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-bio {
+            font-size: 1.15rem;
+            color: var(--gray-700);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+            text-align: left;
+        }
+
+        .hero-bio strong { color: var(--black); font-weight: 600; }
+
+        .hero-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--green-dark);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            background: linear-gradient(135deg, var(--saffron-light) 0%, var(--green-light) 100%);
+            border-left: 4px solid var(--saffron);
+            text-align: left;
+            position: relative;
+        }
+
+        .hero-quote::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--saffron);
+            opacity: 0.3;
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 2rem;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary { background: var(--black); color: var(--white); }
+        .btn-primary:hover { background: var(--gray-900); transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); }
+        .btn-outline { background: transparent; color: var(--black); border: 2px solid var(--black); }
+        .btn-outline:hover { background: var(--black); color: var(--white); }
+        .btn-saffron { background: var(--saffron); color: var(--white); }
+        .btn-saffron:hover { background: var(--saffron-dark); transform: translateY(-2px); }
+        .btn-green { background: var(--green); color: var(--white); }
+        .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+        /* Download CV Button */
+        .download-cv-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            padding: 0.75rem 1.5rem;
+            background: var(--gray-50);
+            color: var(--gray-700);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid var(--gray-200);
+            transition: all 0.3s ease;
+        }
+
+        .download-cv-hero:hover {
+            background: var(--black);
+            color: var(--white);
+            border-color: var(--black);
+        }
+
+        /* Sections */
+        section { padding: 6rem 3rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 4rem; }
+
+        .section-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--saffron-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 20px; height: 1px; background: var(--gray-300); }
+
+        .section-title { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 1rem; }
+        .section-subtitle { font-size: 1.1rem; color: var(--gray-500); max-width: 600px; margin: 0 auto; }
+
+        /* Flag Divider */
+        .flag-divider {
+            height: 4px;
+            background: linear-gradient(90deg, 
+                var(--saffron) 0%, var(--saffron) 33.33%, 
+                var(--white) 33.33%, var(--white) 66.66%, 
+                var(--green) 66.66%, var(--green) 100%);
+            border-top: 1px solid var(--gray-100);
+            border-bottom: 1px solid var(--gray-100);
+        }
+
+        /* Journey */
+        #journey { background: var(--gray-50); position: relative; }
+
+        .journey-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+        .journey-narrative h3 { font-size: 1.75rem; margin-bottom: 1.5rem; }
+        .journey-narrative p { margin-bottom: 1.5rem; font-size: 1.05rem; }
+        .journey-narrative .highlight { background: linear-gradient(120deg, var(--saffron-light) 0%, var(--saffron-light) 100%); padding: 0 4px; }
+
+        .journey-milestones { display: flex; flex-direction: column; gap: 1.5rem; }
+
+        .milestone {
+            background: var(--white);
+            padding: 1.5rem;
+            border-left: 3px solid var(--saffron);
+            transition: all 0.3s ease;
+        }
+
+        .milestone:nth-child(even) { border-left-color: var(--green); }
+        .milestone:hover { transform: translateX(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
+
+        .milestone-year {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--saffron-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .milestone:nth-child(even) .milestone-year { color: var(--green-dark); }
+        .milestone h4 { font-family: 'Work Sans', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+        .milestone p { font-size: 0.9rem; color: var(--gray-500); margin: 0; }
+
+        /* Roles */
+        #current-role { background: var(--white); }
+        .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+
+        .role-card { background: var(--gray-50); padding: 2.5rem; position: relative; }
+        .role-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--saffron), var(--green)); }
+
+        .role-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--saffron-dark); margin-bottom: 1rem; }
+        .role-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .role-card .organization { color: var(--green-dark); font-weight: 600; margin-bottom: 1rem; }
+        .role-card p { font-size: 0.95rem; color: var(--gray-500); }
+        .role-card ul { margin-top: 1rem; padding-left: 1.25rem; }
+        .role-card li { margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--gray-500); }
+
+        /* Internships */
+        .internships-summary { background: var(--white); border: 1px solid var(--gray-100); padding: 2rem; margin-top: 3rem; }
+        .internships-summary h4 { font-family: 'Work Sans', sans-serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: var(--gray-500); }
+        .internship-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+        .internship-tag { background: var(--gray-50); padding: 0.5rem 1rem; font-size: 0.85rem; color: var(--gray-700); border: 1px solid var(--gray-100); transition: all 0.3s ease; }
+        .internship-tag:hover { border-color: var(--saffron); color: var(--saffron-dark); }
+
+        /* Publications */
+        #publications { background: var(--gray-900); color: var(--white); position: relative; }
+        #publications .section-eyebrow { color: var(--saffron); }
+        #publications .section-title { color: var(--white); }
+        #publications .section-subtitle { color: var(--gray-300); }
+
+        .pub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+
+        .pub-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pub-card:hover { background: rgba(255, 255, 255, 0.06); border-color: var(--saffron); transform: translateY(-4px); }
+
+        .pub-category { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .pub-category.fintech { color: var(--saffron); }
+        .pub-category.policy { color: #4ADE80; }
+        .pub-category.international { color: #60A5FA; }
+
+        .pub-platform { font-size: 0.8rem; color: var(--gray-300); margin-bottom: 0.75rem; }
+        .pub-title { font-size: 1.05rem; color: var(--white); margin-bottom: auto; line-height: 1.5; font-family: 'Playfair Display', serif; }
+        .pub-title a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
+        .pub-title a:hover { color: var(--saffron); }
+        .pub-meta { font-size: 0.8rem; color: var(--gray-500); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
+
+        /* Expertise */
+        #expertise { background: var(--white); }
+        .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+        .expertise-card { padding: 2rem; background: var(--gray-50); border-top: 3px solid var(--saffron); transition: all 0.3s ease; }
+        .expertise-card:nth-child(2) { border-top-color: var(--gray-200); }
+        .expertise-card:nth-child(3) { border-top-color: var(--green); }
+        .expertise-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+
+        .expertise-icon { font-size: 2rem; margin-bottom: 1rem; }
+        .expertise-card h3 { font-size: 1.2rem; margin-bottom: 1rem; }
+        .expertise-list { list-style: none; }
+        .expertise-list li { padding: 0.5rem 0; font-size: 0.9rem; color: var(--gray-500); border-bottom: 1px solid var(--gray-100); }
+        .expertise-list li:last-child { border-bottom: none; }
+
+        /* Contact */
+        #contact { background: var(--gray-50); position: relative; }
+
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+        .contact-info h3 { font-size: 1.75rem; margin-bottom: 1.5rem; }
+        .contact-info > p { font-size: 1.05rem; color: var(--gray-500); margin-bottom: 2rem; }
+
+        .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
+        .contact-icon { width: 48px; height: 48px; background: var(--white); border: 1px solid var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+        .contact-text strong { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 0.2rem; }
+        .contact-text a, .contact-text span { color: var(--black); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
+        .contact-text a:hover { color: var(--saffron); }
+
+        .contact-form-wrapper { background: var(--white); padding: 2.5rem; border: 1px solid var(--gray-100); }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--gray-500); }
+        .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: var(--gray-50); border: 1px solid var(--gray-100); color: var(--black); font-family: inherit; font-size: 1rem; transition: all 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--saffron); background: var(--white); }
+        .form-group textarea { min-height: 120px; resize: vertical; }
+
+        /* Footer */
+        footer { background: var(--black); padding: 2rem 3rem; }
+        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .footer-copy { color: var(--gray-500); font-size: 0.9rem; }
+        .footer-links { display: flex; gap: 2rem; }
+        .footer-links a { color: var(--gray-500); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--saffron); }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .journey-content, .role-grid, .contact-grid { grid-template-columns: 1fr; }
+            .expertise-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-inner { padding: 1rem 1.5rem; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1rem; gap: 0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
+            .nav-links.active { display: flex; }
+            .nav-links li { padding: 1rem; border-bottom: 1px solid var(--gray-100); }
+            .nav-links li:last-child { border-bottom: none; }
+            .nav-toggle { display: flex; }
+            section { padding: 4rem 1.5rem; }
+            .hero { padding: 8rem 1.5rem 4rem; }
+            .footer-inner { flex-direction: column; text-align: center; }
+            .profile-photo { width: 140px; height: 140px; font-size: 2.5rem; }
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+    <!-- Indian Flag Bar at Top -->
+    <div class="flag-bar"></div>
+
+    <nav class="nav" id="nav">
+        <div class="nav-inner">
+            <a href="#" class="nav-logo">Raj <span>Shekhar</span></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#current-role">Work</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <section class="hero" id="home">
+        <!-- Parliament Building Background -->
+        <div class="parliament-bg">
+            <svg class="parliament-svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice">
+                <!-- Base Platform -->
+                <rect x="100" y="250" width="1000" height="50" fill="currentColor"/>
+                <rect x="150" y="240" width="900" height="15" fill="currentColor"/>
+                
+                <!-- Main Building Body -->
+                <rect x="200" y="150" width="800" height="100" fill="currentColor"/>
+                
+                <!-- Columns -->
+                <rect x="220" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="270" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="320" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="370" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="420" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="470" y="160" width="20" height="80" fill="currentColor"/>
+                
+                <rect x="710" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="760" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="810" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="860" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="910" y="160" width="20" height="80" fill="currentColor"/>
+                <rect x="960" y="160" width="20" height="80" fill="currentColor"/>
+                
+                <!-- Central Dome -->
+                <ellipse cx="600" cy="150" rx="120" ry="60" fill="currentColor"/>
+                <rect x="520" y="150" width="160" height="100" fill="currentColor"/>
+                <ellipse cx="600" cy="100" rx="80" ry="40" fill="currentColor"/>
+                <rect x="540" y="100" width="120" height="50" fill="currentColor"/>
+                <ellipse cx="600" cy="70" rx="50" ry="30" fill="currentColor"/>
+                <rect x="560" y="70" width="80" height="30" fill="currentColor"/>
+                
+                <!-- Dome Top -->
+                <ellipse cx="600" cy="50" rx="30" ry="20" fill="currentColor"/>
+                <rect x="595" y="30" width="10" height="25" fill="currentColor"/>
+                <circle cx="600" cy="25" r="8" fill="currentColor"/>
+                
+                <!-- Side Wings -->
+                <rect x="100" y="180" width="100" height="70" fill="currentColor"/>
+                <rect x="1000" y="180" width="100" height="70" fill="currentColor"/>
+                
+                <!-- Wing Roofs -->
+                <polygon points="100,180 150,150 200,180" fill="currentColor"/>
+                <polygon points="1000,180 1050,150 1100,180" fill="currentColor"/>
+                
+                <!-- Steps -->
+                <rect x="500" y="250" width="200" height="10" fill="currentColor"/>
+                <rect x="520" y="260" width="160" height="10" fill="currentColor"/>
+                <rect x="540" y="270" width="120" height="10" fill="currentColor"/>
+            </svg>
+        </div>
+
+        <!-- Profile at Top -->
+        <div class="hero-profile">
+            <div class="profile-photo-wrapper">
+                <div class="profile-ring"></div>
+                <div class="profile-photo" id="profilePhoto">
+                    <!-- Replace with: <img src="photo.jpg" alt="Raj Shekhar"> -->
+                    RS
+                </div>
+            </div>
+            <h1>Raj Shekhar</h1>
+            <p class="tagline">Public Policy & Political Strategy</p>
+            <p class="current-role">Consultant, Nation First Policy Research Centre</p>
+            
+            <div class="profile-links">
+                <a href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+                <a href="mailto:rajshekhar.law@gmail.com" title="Email">✉</a>
+            </div>
+
+            <a href="Raj_Shekhar_CV.pdf" class="download-cv-hero" download>↓ Download CV</a>
+        </div>
+
+        <!-- Bio Content -->
+        <div class="hero-content">
+            <p class="hero-bio">Some careers follow a straight line. Mine took a deliberate turn. <strong>From advising FinTech startups on regulatory compliance to shaping the policies that govern them.</strong> Today, I work at the intersection of law, legislation, and democratic governance, driven by a simple belief: <strong>policy is not just drafted, it is debated, negotiated, and ultimately, lived</strong>.</p>
+
+            <p class="hero-bio">My journey through India's leading law firms, <strong>Khaitan & Co</strong> and <strong>Nishith Desai Associates</strong>, gave me a front row seat to how regulations shape markets. But it also revealed a deeper truth: the real action happens before the law reaches the statute books. That realization led me from corporate practice to the <strong>Parliament and Legislative Affairs Division</strong>, where I now contribute to the very process of lawmaking.</p>
+
+            <blockquote class="hero-quote">
+                Legislation is as much about persuasion and process as it is about drafting. The best policies are those that survive scrutiny beyond conference rooms.
+            </blockquote>
+
+            <p class="hero-bio">From co-authoring White Papers for <strong>Y20 India</strong> (the official youth engagement group of G20) to being selected among <strong>26 leaders nationwide</strong> for the Konrad Adenauer Stiftung Rising Leaders Programme, I have engaged with governance at both national and international levels. My work with the <strong>Commonwealth Youth Council</strong> and the <strong>Indian Youth Diplomacy Forum</strong> continues this mission, bridging policy research with diplomatic action.</p>
+
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Work With Me</a>
+                <a href="#publications" class="btn btn-outline">Read My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <div class="flag-divider"></div>
+
+    <section id="journey">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">The Path</div>
+                <h2 class="section-title">A Deliberate Transition</h2>
+                <p class="section-subtitle">From regulatory advisory to legislative research, understanding how policy moves from idea to institution</p>
+            </div>
+
+            <div class="journey-content">
+                <div class="journey-narrative reveal">
+                    <h3>Why I Left Corporate Law</h3>
+                    <p>After years of advising clients on <span class="highlight">RBI regulations, data privacy frameworks, and FinTech compliance</span>, I found myself increasingly drawn to a different question: <em>Who writes these rules, and how?</em></p>
+                    <p>Corporate law taught me to navigate regulations. Policy work lets me help shape them. It is the difference between reading the playbook and being in the room where it is written.</p>
+                    <p>The transition was not accidental. It was built through deliberate choices: joining <strong>Y20 India</strong> during India's G20 presidency, completing leadership training with <strong>Konrad Adenauer Stiftung</strong>, and engaging with governance dialogues across ASEAN and the Commonwealth.</p>
+                    <p>Today, I bring a rare combination to policy research: the <strong>precision of legal training</strong> and the <strong>strategic thinking of political engagement</strong>.</p>
+                </div>
+
+                <div class="journey-milestones">
+                    <div class="milestone reveal"><div class="milestone-year">2025</div><h4>Nation First Policy Research Centre</h4><p>Parliament and Legislative Affairs Division</p></div>
+                    <div class="milestone reveal"><div class="milestone-year">2025</div><h4>Konrad Adenauer Stiftung</h4><p>Rising Leaders Programme, 1 of 26 nationwide</p></div>
+                    <div class="milestone reveal"><div class="milestone-year">2024 to 2025</div><h4>Khaitan & Co</h4><p>Associate, Banking and Finance (FinTech)</p></div>
+                    <div class="milestone reveal"><div class="milestone-year">2022 to 2023</div><h4>Y20 India (G20)</h4><p>Policy and Research Associate, White Papers</p></div>
+                    <div class="milestone reveal"><div class="milestone-year">2022</div><h4>Millennium Campus Network</h4><p>Fellow, selected among 30,000+ globally</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="flag-divider"></div>
+
+    <section id="current-role">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">Present Focus</div>
+                <h2 class="section-title">Where I Work Now</h2>
+                <p class="section-subtitle">Contributing to governance through research, analysis, and diplomatic engagement</p>
+            </div>
+
+            <div class="role-grid">
+                <div class="role-card reveal">
+                    <div class="role-card-label">Primary Role</div>
+                    <h3>Consultant, Legislative Research and Public Policy</h3>
+                    <p class="organization">Nation First Policy Research Centre (NFPRC)</p>
+                    <p>Parliament and Legislative Affairs Division, contributing to evidence based policy recommendations and legislative impact assessments.</p>
+                    <ul><li>Legislative research and parliamentary process analysis</li><li>Policy brief development and stakeholder engagement</li><li>Regulatory impact assessment and governance reform</li></ul>
+                </div>
+
+                <div class="role-card reveal">
+                    <div class="role-card-label">International Engagement</div>
+                    <h3>Regional Coordinator, Central Asia and Eastern Europe</h3>
+                    <p class="organization">Indian Youth Diplomacy Forum (IYDF)</p>
+                    <p>Leading youth diplomacy initiatives and policy dialogues across regions.</p>
+                    <ul><li>Track II diplomacy and cultural exchange</li><li>Policy dialogue coordination</li><li>Youth leadership across 15+ countries</li></ul>
+                </div>
+            </div>
+
+            <div class="internships-summary reveal">
+                <h4>Professional Training and Internships</h4>
+                <div class="internship-tags">
+                    <span class="internship-tag">Khaitan & Co, Data Privacy</span>
+                    <span class="internship-tag">Nishith Desai Associates, Investment Funds</span>
+                    <span class="internship-tag">Foreign Commonwealth Office (UK)</span>
+                    <span class="internship-tag">High Court of Delhi</span>
+                    <span class="internship-tag">Gaggar & Partners, Competition Law</span>
+                    <span class="internship-tag">Jharkhand Education Project Council</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">Thought Leadership</div>
+                <h2 class="section-title">Selected Publications</h2>
+                <p class="section-subtitle">Writing on FinTech regulation, public policy, and international affairs</p>
+            </div>
+
+            <div class="pub-grid" id="publicationsGrid">
+                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">IndiaCorpLaw</p><h4 class="pub-title"><a href="https://indiacorplaw.in/2022/11/29/digital-personal-data-protection-bill-vis-a-vis-gdpr/" target="_blank">Digital Personal Data Protection Bill vis a vis GDPR</a></h4><p class="pub-meta">November 2022</p></div>
+                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">Tech Law Forum, NALSAR</p><h4 class="pub-title"><a href="https://techlawforum.nalsar.ac.in/cert-in-directions-on-cybersecurity-2022-for-the-better-or-worse/" target="_blank">CERT In Directions on Cybersecurity, 2022: For the Better or Worse?</a></h4><p class="pub-meta">July 2022</p></div>
+                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">Nishith Desai Associates</p><h4 class="pub-title"><a href="https://natlawreview.com/article/subscription-credit-facilities-time-aifs-india-to-embrace-subscription-credit-lines" target="_blank">Subscription Credit Facilities: Time for AIFs in India to Embrace Credit Lines?</a></h4><p class="pub-meta">August 2022</p></div>
+                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">IndiaCorpLaw</p><h4 class="pub-title"><a href="https://indiacorplaw.in/2022/01/the-jpc-report-on-personal-data-protection-bill-what-is-in-it-for-indian-startups.html" target="_blank">The JPC Report on Personal Data Protection Bill: What is In It for Indian Startups?</a></h4><p class="pub-meta">January 2022</p></div>
+                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">JURIST (University of Pittsburgh)</p><h4 class="pub-title"><a href="https://www.jurist.org/commentary/2021/06/parashar-shekar-whatsapp-encryption-privacy/" target="_blank">WhatsApp and the End to End Encryption Saga: Government Guidelines vs. Right to Privacy</a></h4><p class="pub-meta">July 2021</p></div>
+                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">The Fletcher Forum of World Affairs</p><h4 class="pub-title"><a href="https://www.fletcherforum.org/the-rostrum/2020/8/22/the-hagia-sophia-conversion-are-democracies-around-the-world-turning-majoritarian" target="_blank">The Hagia Sophia Conversion: Are Democracies Around The World Turning Majoritarian?</a></h4><p class="pub-meta">August 2020</p></div>
+                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">Oxford Political Review</p><h4 class="pub-title"><a href="https://oxfordpoliticalreview.com/2020/08/03/the-hagia-sophia-decision/" target="_blank">The Hagia Sophia Decision: Majoritarian Views Undermining Rule of Law</a></h4><p class="pub-meta">August 2020</p></div>
+                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">JURIST (University of Pittsburgh)</p><h4 class="pub-title"><a href="https://www.jurist.org/commentary/2020/09/raj-shekhar-bru-tribe-exodus-india/" target="_blank">Bru Tribe's Exodus in India: A Crisis of Citizenship and Belonging</a></h4><p class="pub-meta">September 2020</p></div>
+                <div class="pub-card reveal"><p class="pub-category policy">Public Policy</p><p class="pub-platform">Law and Other Things</p><h4 class="pub-title"><a href="https://lawandotherthings.com/lost-in-rubble-bull-dozing-the-rule-of-law-and-spirit-of-democracy-part-i/" target="_blank">Lost in Rubble: Bull Dozing the Rule of Law and Spirit of Democracy</a></h4><p class="pub-meta">October 2022</p></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;"><a href="mailto:rajshekhar.law@gmail.com?subject=Request for Full Publications List" class="btn btn-saffron">Request Full Publications List</a></div>
+        </div>
+    </section>
+
+    <div class="flag-divider"></div>
+
+    <section id="expertise">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">Competencies</div>
+                <h2 class="section-title">Areas of Expertise</h2>
+                <p class="section-subtitle">Where legal precision meets policy strategy</p>
+            </div>
+
+            <div class="expertise-grid">
+                <div class="expertise-card reveal"><div class="expertise-icon">🏛️</div><h3>Legislative and Parliamentary</h3><ul class="expertise-list"><li>Legislative Research and Bill Analysis</li><li>Parliamentary Process and Procedure</li><li>Regulatory Impact Assessment</li><li>Policy Brief Development</li><li>Governance Reform Strategy</li></ul></div>
+                <div class="expertise-card reveal"><div class="expertise-icon">💼</div><h3>FinTech and Technology Law</h3><ul class="expertise-list"><li>RBI Regulations and Compliance</li><li>Data Privacy and Protection</li><li>Payment Systems</li><li>Digital Lending Frameworks</li><li>Cybersecurity Compliance</li></ul></div>
+                <div class="expertise-card reveal"><div class="expertise-icon">🌏</div><h3>International and Diplomatic</h3><ul class="expertise-list"><li>Youth Diplomacy (G20/Y20)</li><li>ASEAN Policy Engagement</li><li>Commonwealth Affairs</li><li>Track II Diplomacy</li><li>Comparative Governance</li></ul></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="section-inner">
+            <div class="section-header">
+                <div class="section-eyebrow">Get in Touch</div>
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Open to conversations on policy, governance, and strategic communications</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Ready to Collaborate?</h3>
+                    <p>Whether you need policy research, strategic communications, or someone who understands both the legal and political dimensions of governance, let's talk.</p>
+                    <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-text"><strong>Email</strong><a href="mailto:rajshekhar.law@gmail.com">rajshekhar.law@gmail.com</a></div></div>
+                    <div class="contact-item"><div class="contact-icon">💼</div><div class="contact-text"><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener">linkedin.com/in/rajshekharlaw</a></div></div>
+                    <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><strong>Location</strong><span>New Delhi, India</span></div></div>
+                </div>
+
+                <div class="contact-form-wrapper reveal">
+                    <form action="https://formspree.io/f/your-form-id" method="POST">
+                        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required placeholder="Enter your name"></div>
+                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" required placeholder="Enter your email"></div>
+                        <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required placeholder="What would you like to discuss?"></div>
+                        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Your message..."></textarea></div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-copy">© 2025 Raj Shekhar. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:rajshekhar.law@gmail.com">Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation
+        document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
+        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
+        window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50));
+
+        // Reveal animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        /*
+        =====================================================
+        DYNAMIC PUBLICATIONS FROM GOOGLE SHEETS
+        =====================================================
+        
+        To enable dynamic publications:
+        
+        1. Create a Google Sheet with columns:
+           Title | URL | Publisher | Category | Date
+           
+           Category values: fintech, policy, international
+        
+        2. File > Share > Publish to web > CSV format
+        3. Replace YOUR_SHEET_ID below
+        4. Uncomment loadPublications() at bottom
+        =====================================================
+        */
+        
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv';
+
+        async function loadPublications() {
+            try {
+                const response = await fetch(SHEET_CSV_URL);
+                if (!response.ok) throw new Error('Sheet not found');
+                const csv = await response.text();
+                const pubs = parseCSV(csv);
+                if (pubs.length > 0) renderPublications(pubs);
+            } catch (e) {
+                console.log('Using static publications');
+            }
+        }
+
+        function parseCSV(csv) {
+            const lines = csv.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
+            return lines.slice(1).filter(l => l.trim()).map(line => {
+                const vals = line.match(/(".*?"|[^,]+)/g) || [];
+                const pub = {};
+                headers.forEach((h, i) => pub[h] = vals[i] ? vals[i].replace(/^"|"$/g, '').trim() : '');
+                return pub;
+            }).filter(p => p.title);
+        }
+
+        function renderPublications(pubs) {
+            document.getElementById('publicationsGrid').innerHTML = pubs.map(p => `
+                <div class="pub-card reveal visible">
+                    <p class="pub-category ${p.category || 'policy'}">${{fintech:'FinTech and Regulation',policy:'Public Policy',international:'International Affairs'}[p.category] || 'Publication'}</p>
+                    <p class="pub-platform">${p.publisher || ''}</p>
+                    <h4 class="pub-title">${p.url ? `<a href="${p.url}" target="_blank">${p.title}</a>` : p.title}</h4>
+                    <p class="pub-meta">${p.date || ''}</p>
+                </div>
+            `).join('');
+        }
+
+        // Uncomment after setting up Google Sheet:
+        // loadPublications();
+    </script>
+</body>
+</html>
