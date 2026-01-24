@@ -653,8 +653,7 @@
             <div class="profile-photo-wrapper">
                 <div class="profile-ring"></div>
                 <div class="profile-photo" id="profilePhoto">
-                    <!-- Replace with: <img src="photo.jpg" alt="Raj Shekhar"> -->
-                    RS
+                   <img src="photo.jpg" alt="Raj Shekhar">
                 </div>
             </div>
             <h1>Raj Shekhar</h1>
@@ -881,7 +880,7 @@
         =====================================================
         */
         
-        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/YOUR_SHEET_ID/export?format=csv';
+        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Krbb25vCYV-0SEigQIdB9TAB9j8l-MLs_zzOvhYNiCBXM-rwP1VWPJA-3Q7RfggcoJL6cune351A/pub?gid=0&single=true&output=csv';
 
         async function loadPublications() {
             try {
@@ -918,7 +917,7 @@
         }
 
         // Uncomment after setting up Google Sheet:
-        // loadPublications();
+        loadPublications();
     </script>
 </body>
 </html>
