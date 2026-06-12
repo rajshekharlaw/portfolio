@@ -1,923 +1,846 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raj Shekhar | Public Policy & Political Strategy</title>
-    <meta name="description" content="Public Policy Consultant and Political Strategist. From corporate law to the corridors of governance.">
-    <meta property="og:title" content="Raj Shekhar | Public Policy & Political Strategy">
-    <meta property="og:description" content="From corporate law to the corridors of governance.">
-    <meta property="og:type" content="website">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --saffron: #FF9933;
-            --saffron-dark: #E8850F;
-            --saffron-light: #FFF3E6;
-            --white: #FFFFFF;
-            --green: #138808;
-            --green-dark: #0F6B06;
-            --green-light: #E8F5E6;
-            --black: #1A1A1A;
-            --gray-900: #212121;
-            --gray-700: #424242;
-            --gray-500: #6B6B6B;
-            --gray-300: #B0B0B0;
-            --gray-100: #F5F5F5;
-            --gray-50: #FAFAFA;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; font-size: 16px; }
-
-        body {
-            font-family: 'Work Sans', sans-serif;
-            background: var(--white);
-            color: var(--gray-700);
-            line-height: 1.8;
-        }
-
-        h1, h2, h3, h4, h5 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            line-height: 1.3;
-            color: var(--black);
-        }
-
-        ::selection { background: var(--saffron); color: var(--white); }
-
-        /* Indian Flag Bar */
-        .flag-bar {
-            height: 6px;
-            background: linear-gradient(to bottom, 
-                var(--saffron) 0%, var(--saffron) 33.33%, 
-                var(--white) 33.33%, var(--white) 66.66%, 
-                var(--green) 66.66%, var(--green) 100%);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1001;
-        }
-
-        /* Navigation */
-        .nav {
-            position: fixed;
-            top: 6px;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid transparent;
-            transition: all 0.4s ease;
-        }
-
-        .nav.scrolled {
-            border-bottom-color: var(--gray-100);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.06);
-        }
-
-        .nav-inner {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 1rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--black);
-            text-decoration: none;
-        }
-
-        .nav-logo span {
-            background: linear-gradient(135deg, var(--saffron) 0%, var(--green) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--gray-500);
-            text-decoration: none;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--saffron) 0%, var(--green) 100%);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover { color: var(--black); }
-        .nav-links a:hover::after { width: 100%; }
-
-        .nav-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .nav-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--black);
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 10rem 3rem 6rem;
-            background: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Parliament Background Illustration */
-        .parliament-bg {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 300px;
-            opacity: 0.04;
-            pointer-events: none;
-        }
-
-        .parliament-svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Profile Section at Top */
-        .hero-profile {
-            text-align: center;
-            margin-bottom: 3rem;
-            animation: fadeUp 1s ease forwards;
-            position: relative;
-            z-index: 1;
-        }
-
-        .profile-photo-wrapper {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 1.5rem;
-        }
-
-        .profile-photo {
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-50) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--gray-300);
-            overflow: hidden;
-            border: 4px solid var(--white);
-            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
-            position: relative;
-            z-index: 2;
-        }
-
-        .profile-photo img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* Tricolor Ring around Photo */
-        .profile-ring {
-            position: absolute;
-            top: -8px;
-            left: -8px;
-            right: -8px;
-            bottom: -8px;
-            border-radius: 50%;
-            background: conic-gradient(
-                var(--saffron) 0deg 120deg,
-                var(--white) 120deg 240deg,
-                var(--green) 240deg 360deg
-            );
-            z-index: 1;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .hero-profile h1 {
-            font-size: 2.5rem;
-            letter-spacing: -0.02em;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero-profile .tagline {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            font-style: italic;
-            color: var(--gray-500);
-            margin-bottom: 1rem;
-        }
-
-        .hero-profile .current-role {
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--saffron-dark);
-        }
-
-        .profile-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .profile-links a {
-            width: 44px;
-            height: 44px;
-            border: 1px solid var(--gray-200);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-500);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            background: var(--white);
-        }
-
-        .profile-links a:hover { 
-            border-color: var(--saffron); 
-            color: var(--saffron); 
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 153, 51, 0.2);
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Hero Content */
-        .hero-content {
-            max-width: 800px;
-            text-align: center;
-            animation: fadeUp 1s ease 0.2s forwards;
-            opacity: 0;
-            position: relative;
-            z-index: 1;
-        }
-
-        .hero-bio {
-            font-size: 1.15rem;
-            color: var(--gray-700);
-            margin-bottom: 1.5rem;
-            line-height: 1.9;
-            text-align: left;
-        }
-
-        .hero-bio strong { color: var(--black); font-weight: 600; }
-
-        .hero-quote {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--green-dark);
-            padding: 2rem;
-            margin: 2.5rem 0;
-            background: linear-gradient(135deg, var(--saffron-light) 0%, var(--green-light) 100%);
-            border-left: 4px solid var(--saffron);
-            text-align: left;
-            position: relative;
-        }
-
-        .hero-quote::before {
-            content: '"';
-            font-size: 4rem;
-            color: var(--saffron);
-            opacity: 0.3;
-            position: absolute;
-            top: 0;
-            left: 1rem;
-            font-family: Georgia, serif;
-            line-height: 1;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 2.5rem;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 2rem;
-            font-family: 'Work Sans', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-primary { background: var(--black); color: var(--white); }
-        .btn-primary:hover { background: var(--gray-900); transform: translateY(-2px); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); }
-        .btn-outline { background: transparent; color: var(--black); border: 2px solid var(--black); }
-        .btn-outline:hover { background: var(--black); color: var(--white); }
-        .btn-saffron { background: var(--saffron); color: var(--white); }
-        .btn-saffron:hover { background: var(--saffron-dark); transform: translateY(-2px); }
-        .btn-green { background: var(--green); color: var(--white); }
-        .btn-green:hover { background: var(--green-dark); transform: translateY(-2px); }
-
-        /* Download CV Button */
-        .download-cv-hero {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-top: 1rem;
-            padding: 0.75rem 1.5rem;
-            background: var(--gray-50);
-            color: var(--gray-700);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            border: 1px solid var(--gray-200);
-            transition: all 0.3s ease;
-        }
-
-        .download-cv-hero:hover {
-            background: var(--black);
-            color: var(--white);
-            border-color: var(--black);
-        }
-
-        /* Sections */
-        section { padding: 6rem 3rem; }
-        .section-inner { max-width: 1100px; margin: 0 auto; }
-        .section-header { text-align: center; margin-bottom: 4rem; }
-
-        .section-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--saffron-dark);
-            margin-bottom: 1rem;
-        }
-
-        .section-eyebrow::before, .section-eyebrow::after { content: ''; width: 20px; height: 1px; background: var(--gray-300); }
-
-        .section-title { font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 1rem; }
-        .section-subtitle { font-size: 1.1rem; color: var(--gray-500); max-width: 600px; margin: 0 auto; }
-
-        /* Flag Divider */
-        .flag-divider {
-            height: 4px;
-            background: linear-gradient(90deg, 
-                var(--saffron) 0%, var(--saffron) 33.33%, 
-                var(--white) 33.33%, var(--white) 66.66%, 
-                var(--green) 66.66%, var(--green) 100%);
-            border-top: 1px solid var(--gray-100);
-            border-bottom: 1px solid var(--gray-100);
-        }
-
-        /* Journey */
-        #journey { background: var(--gray-50); position: relative; }
-
-        .journey-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-
-        .journey-narrative h3 { font-size: 1.75rem; margin-bottom: 1.5rem; }
-        .journey-narrative p { margin-bottom: 1.5rem; font-size: 1.05rem; }
-        .journey-narrative .highlight { background: linear-gradient(120deg, var(--saffron-light) 0%, var(--saffron-light) 100%); padding: 0 4px; }
-
-        .journey-milestones { display: flex; flex-direction: column; gap: 1.5rem; }
-
-        .milestone {
-            background: var(--white);
-            padding: 1.5rem;
-            border-left: 3px solid var(--saffron);
-            transition: all 0.3s ease;
-        }
-
-        .milestone:nth-child(even) { border-left-color: var(--green); }
-        .milestone:hover { transform: translateX(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-
-        .milestone-year {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--saffron-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .milestone:nth-child(even) .milestone-year { color: var(--green-dark); }
-        .milestone h4 { font-family: 'Work Sans', sans-serif; font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
-        .milestone p { font-size: 0.9rem; color: var(--gray-500); margin: 0; }
-
-        /* Roles */
-        #current-role { background: var(--white); }
-        .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-
-        .role-card { background: var(--gray-50); padding: 2.5rem; position: relative; }
-        .role-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--saffron), var(--green)); }
-
-        .role-card-label { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--saffron-dark); margin-bottom: 1rem; }
-        .role-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
-        .role-card .organization { color: var(--green-dark); font-weight: 600; margin-bottom: 1rem; }
-        .role-card p { font-size: 0.95rem; color: var(--gray-500); }
-        .role-card ul { margin-top: 1rem; padding-left: 1.25rem; }
-        .role-card li { margin-bottom: 0.5rem; font-size: 0.95rem; color: var(--gray-500); }
-
-        /* Internships */
-        .internships-summary { background: var(--white); border: 1px solid var(--gray-100); padding: 2rem; margin-top: 3rem; }
-        .internships-summary h4 { font-family: 'Work Sans', sans-serif; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 1rem; color: var(--gray-500); }
-        .internship-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
-        .internship-tag { background: var(--gray-50); padding: 0.5rem 1rem; font-size: 0.85rem; color: var(--gray-700); border: 1px solid var(--gray-100); transition: all 0.3s ease; }
-        .internship-tag:hover { border-color: var(--saffron); color: var(--saffron-dark); }
-
-        /* Publications */
-        #publications { background: var(--gray-900); color: var(--white); position: relative; }
-        #publications .section-eyebrow { color: var(--saffron); }
-        #publications .section-title { color: var(--white); }
-        #publications .section-subtitle { color: var(--gray-300); }
-
-        .pub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
-
-        .pub-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 2rem;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .pub-card:hover { background: rgba(255, 255, 255, 0.06); border-color: var(--saffron); transform: translateY(-4px); }
-
-        .pub-category { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .pub-category.fintech { color: var(--saffron); }
-        .pub-category.policy { color: #4ADE80; }
-        .pub-category.international { color: #60A5FA; }
-
-        .pub-platform { font-size: 0.8rem; color: var(--gray-300); margin-bottom: 0.75rem; }
-        .pub-title { font-size: 1.05rem; color: var(--white); margin-bottom: auto; line-height: 1.5; font-family: 'Playfair Display', serif; }
-        .pub-title a { color: inherit; text-decoration: none; transition: color 0.3s ease; }
-        .pub-title a:hover { color: var(--saffron); }
-        .pub-meta { font-size: 0.8rem; color: var(--gray-500); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.08); }
-
-        /* Expertise */
-        #expertise { background: var(--white); }
-        .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
-
-        .expertise-card { padding: 2rem; background: var(--gray-50); border-top: 3px solid var(--saffron); transition: all 0.3s ease; }
-        .expertise-card:nth-child(2) { border-top-color: var(--gray-200); }
-        .expertise-card:nth-child(3) { border-top-color: var(--green); }
-        .expertise-card:hover { transform: translateY(-5px); box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
-
-        .expertise-icon { font-size: 2rem; margin-bottom: 1rem; }
-        .expertise-card h3 { font-size: 1.2rem; margin-bottom: 1rem; }
-        .expertise-list { list-style: none; }
-        .expertise-list li { padding: 0.5rem 0; font-size: 0.9rem; color: var(--gray-500); border-bottom: 1px solid var(--gray-100); }
-        .expertise-list li:last-child { border-bottom: none; }
-
-        /* Contact */
-        #contact { background: var(--gray-50); position: relative; }
-
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-        .contact-info h3 { font-size: 1.75rem; margin-bottom: 1.5rem; }
-        .contact-info > p { font-size: 1.05rem; color: var(--gray-500); margin-bottom: 2rem; }
-
-        .contact-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem; }
-        .contact-icon { width: 48px; height: 48px; background: var(--white); border: 1px solid var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-        .contact-text strong { display: block; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-500); margin-bottom: 0.2rem; }
-        .contact-text a, .contact-text span { color: var(--black); text-decoration: none; font-weight: 500; transition: color 0.3s ease; }
-        .contact-text a:hover { color: var(--saffron); }
-
-        .contact-form-wrapper { background: var(--white); padding: 2.5rem; border: 1px solid var(--gray-100); }
-        .form-group { margin-bottom: 1.5rem; }
-        .form-group label { display: block; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 0.5rem; color: var(--gray-500); }
-        .form-group input, .form-group textarea { width: 100%; padding: 1rem; background: var(--gray-50); border: 1px solid var(--gray-100); color: var(--black); font-family: inherit; font-size: 1rem; transition: all 0.3s ease; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--saffron); background: var(--white); }
-        .form-group textarea { min-height: 120px; resize: vertical; }
-
-        /* Footer */
-        footer { background: var(--black); padding: 2rem 3rem; }
-        .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
-        .footer-copy { color: var(--gray-500); font-size: 0.9rem; }
-        .footer-links { display: flex; gap: 2rem; }
-        .footer-links a { color: var(--gray-500); text-decoration: none; font-size: 0.9rem; transition: color 0.3s ease; }
-        .footer-links a:hover { color: var(--saffron); }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .journey-content, .role-grid, .contact-grid { grid-template-columns: 1fr; }
-            .expertise-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-inner { padding: 1rem 1.5rem; }
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1rem; gap: 0; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); }
-            .nav-links.active { display: flex; }
-            .nav-links li { padding: 1rem; border-bottom: 1px solid var(--gray-100); }
-            .nav-links li:last-child { border-bottom: none; }
-            .nav-toggle { display: flex; }
-            section { padding: 4rem 1.5rem; }
-            .hero { padding: 8rem 1.5rem 4rem; }
-            .footer-inner { flex-direction: column; text-align: center; }
-            .profile-photo { width: 140px; height: 140px; font-size: 2.5rem; }
-        }
-
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raj Shekhar — Law. Policy. Nation.</title>
+<meta name="description" content="The story of a lawyer who left the boardroom to help write the rules of the republic. Public policy, legislative research, and political strategy.">
+<meta property="og:title" content="Raj Shekhar — Law. Policy. Nation.">
+<meta property="og:description" content="From corporate law to the corridors of Parliament. A story told in five chapters.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RAJ SHEKHAR — CINEMATIC PORTFOLIO
+   Design language: Midnight theatre. Tricolor light.
+   ============================================================ */
+:root{
+  --bg:#08080C;
+  --bg-2:#0C0C12;
+  --bg-3:#101019;
+  --ink:#F4F2EC;
+  --ink-dim:#9C9AA3;
+  --ink-faint:#5A5963;
+  --saffron:#FF9933;
+  --saffron-hot:#FFB45E;
+  --green:#1DB954;
+  --green-deep:#138808;
+  --line:rgba(244,242,236,.08);
+  --glass:rgba(255,255,255,.03);
+  --glow-s:0 0 40px rgba(255,153,51,.35);
+  --glow-g:0 0 40px rgba(29,185,84,.30);
+  --font-d:'Syne',sans-serif;
+  --font-b:'Space Grotesk',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-b);
+  background:var(--bg);
+  color:var(--ink);
+  line-height:1.75;
+  overflow-x:hidden;
+  cursor:none;
+}
+@media (hover:none),(max-width:768px){body{cursor:auto}}
+h1,h2,h3,h4{font-family:var(--font-d);font-weight:700;line-height:1.05;color:var(--ink)}
+a{color:inherit}
+::selection{background:var(--saffron);color:#08080C}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--saffron),var(--green));border-radius:3px}
+
+/* ---------- Noise overlay ---------- */
+.noise{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ---------- Preloader ---------- */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;transition:opacity .8s ease,visibility .8s}
+#loader.done{opacity:0;visibility:hidden}
+.loader-name{font-family:var(--font-d);font-size:clamp(1.4rem,4vw,2.2rem);font-weight:800;letter-spacing:.35em;text-transform:uppercase;opacity:0;animation:loaderFade 1.2s ease .2s forwards}
+.loader-bars{display:flex;gap:8px}
+.loader-bars span{width:48px;height:4px;border-radius:2px;transform:scaleX(0);transform-origin:left;animation:barGrow .9s cubic-bezier(.77,0,.18,1) forwards}
+.loader-bars span:nth-child(1){background:var(--saffron);animation-delay:.4s}
+.loader-bars span:nth-child(2){background:var(--ink);animation-delay:.6s}
+.loader-bars span:nth-child(3){background:var(--green);animation-delay:.8s}
+@keyframes barGrow{to{transform:scaleX(1)}}
+@keyframes loaderFade{to{opacity:1}}
+
+/* ---------- Custom cursor ---------- */
+.cursor-dot,.cursor-ring{position:fixed;top:0;left:0;z-index:9998;pointer-events:none;border-radius:50%;transform:translate(-50%,-50%)}
+.cursor-dot{width:7px;height:7px;background:var(--saffron)}
+.cursor-ring{width:36px;height:36px;border:1px solid rgba(255,153,51,.5);transition:width .25s,height .25s,border-color .25s,background .25s}
+.cursor-ring.hovering{width:64px;height:64px;border-color:var(--green);background:rgba(29,185,84,.07)}
+@media (hover:none),(max-width:768px){.cursor-dot,.cursor-ring{display:none}}
+
+/* ---------- Scroll progress ---------- */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:1002;background:linear-gradient(90deg,var(--saffron),#fff,var(--green));box-shadow:0 0 12px rgba(255,153,51,.6)}
+
+/* ---------- Nav ---------- */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:1.4rem 0;transition:.4s}
+nav.scrolled{background:rgba(8,8,12,.75);backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:1rem 0}
+.nav-inner{max-width:1340px;margin:0 auto;padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--font-d);font-weight:800;font-size:1.15rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+.logo i{font-style:normal;background:linear-gradient(90deg,var(--saffron),var(--green));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2.4rem;list-style:none}
+.nav-links a{font-size:.74rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-dim);text-decoration:none;position:relative;transition:color .3s}
+.nav-links a::after{content:'';position:absolute;left:0;bottom:-7px;height:1px;width:0;background:linear-gradient(90deg,var(--saffron),var(--green));transition:width .35s}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a:hover::after{width:100%}
+.nav-cta{font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;padding:.65rem 1.4rem;border:1px solid var(--saffron);color:var(--saffron);transition:.3s}
+.nav-cta:hover{background:var(--saffron);color:#08080C;box-shadow:var(--glow-s)}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;z-index:1003}
+.burger span{width:26px;height:2px;background:var(--ink);transition:.3s}
+
+/* ---------- Hero ---------- */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#scene{position:absolute;inset:0;z-index:0}
+.hero-inner{position:relative;z-index:3;text-align:center;padding:8rem 2rem 6rem;max-width:1100px}
+.hero-kicker{display:inline-flex;align-items:center;gap:.9rem;font-size:.72rem;letter-spacing:.4em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:2.2rem;opacity:0;animation:rise 1s ease .9s forwards}
+.hero-kicker::before,.hero-kicker::after{content:'';width:42px;height:1px}
+.hero-kicker::before{background:linear-gradient(90deg,transparent,var(--saffron))}
+.hero-kicker::after{background:linear-gradient(90deg,var(--green),transparent)}
+.hero-photo{width:148px;height:148px;border-radius:50%;margin:0 auto 2.4rem;position:relative;opacity:0;animation:rise 1s ease .55s forwards}
+.hero-photo .ring{position:absolute;inset:-9px;border-radius:50%;background:conic-gradient(var(--saffron) 0 120deg,#f4f2ec 120deg 240deg,var(--green) 240deg 360deg);animation:spin 14s linear infinite;filter:drop-shadow(0 0 18px rgba(255,153,51,.35))}
+.hero-photo .ring::after{content:'';position:absolute;inset:5px;border-radius:50%;background:var(--bg)}
+.hero-photo .ph{position:absolute;inset:0;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 30% 30%,#1a1a24,#0c0c12);font-family:var(--font-d);font-weight:800;font-size:2.6rem;color:var(--ink-faint);z-index:2;border:3px solid var(--bg)}
+.hero-photo .ph img{width:100%;height:100%;object-fit:cover}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-title{font-size:clamp(3.4rem,11vw,8.5rem);font-weight:800;letter-spacing:-.02em;text-transform:uppercase;line-height:.95}
+.hero-title .l{display:inline-block;opacity:0;transform:translateY(60px) rotate(4deg);animation:letter .9s cubic-bezier(.2,.9,.25,1) forwards}
+.hero-title .w2 .l{color:transparent;-webkit-text-stroke:1.5px var(--ink)}
+.hero-title .w2 .l.lit{color:var(--saffron);-webkit-text-stroke:0;text-shadow:var(--glow-s)}
+@keyframes letter{to{opacity:1;transform:translateY(0) rotate(0)}}
+.hero-sub{margin-top:2rem;font-size:clamp(1rem,2.1vw,1.3rem);color:var(--ink-dim);font-weight:300;max-width:680px;margin-left:auto;margin-right:auto;opacity:0;animation:rise 1s ease 1.15s forwards}
+.hero-sub b{color:var(--ink);font-weight:500}
+.hero-actions{margin-top:3rem;display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap;opacity:0;animation:rise 1s ease 1.35s forwards}
+.btn{font-family:var(--font-b);font-size:.78rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;text-decoration:none;padding:1.05rem 2.3rem;border:none;cursor:pointer;position:relative;overflow:hidden;transition:.35s;display:inline-flex;align-items:center;gap:.6rem}
+.btn-fill{background:linear-gradient(90deg,var(--saffron),var(--saffron-hot));color:#0a0a0e}
+.btn-fill:hover{transform:translateY(-3px);box-shadow:var(--glow-s)}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--line);backdrop-filter:blur(6px)}
+.btn-ghost:hover{border-color:var(--green);color:var(--green);box-shadow:var(--glow-g);transform:translateY(-3px)}
+.btn-cv{background:transparent;color:var(--ink-dim);border:1px dashed var(--ink-faint)}
+.btn-cv:hover{color:var(--saffron);border-color:var(--saffron)}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.scroll-hint{position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:.6rem;color:var(--ink-faint);font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;opacity:0;animation:rise 1s ease 1.8s forwards}
+.scroll-hint .line{width:1px;height:54px;background:linear-gradient(var(--saffron),transparent);animation:drop 1.8s ease infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ---------- Marquee ---------- */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.15rem 0;overflow:hidden;background:var(--bg-2);position:relative;z-index:3}
+.marquee-track{display:flex;gap:3.5rem;width:max-content;animation:scrollx 30s linear infinite;white-space:nowrap}
+.marquee span{font-family:var(--font-d);font-size:.85rem;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center;gap:3.5rem}
+.marquee b{color:var(--saffron);font-size:.6rem}
+.marquee span:nth-child(even) b{color:var(--green)}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* ---------- Chapters ---------- */
+.chapter{position:relative;padding:9rem 2.5rem;max-width:1340px;margin:0 auto}
+.ch-head{display:flex;align-items:baseline;gap:2rem;margin-bottom:3.5rem;flex-wrap:wrap}
+.ch-num{font-family:var(--font-d);font-size:clamp(4rem,9vw,7rem);font-weight:800;line-height:1;color:transparent;-webkit-text-stroke:1px var(--ink-faint);user-select:none}
+.ch-meta .ch-label{font-size:.68rem;letter-spacing:.45em;text-transform:uppercase;color:var(--saffron);margin-bottom:.6rem;display:block}
+.ch-meta h2{font-size:clamp(2rem,4.6vw,3.6rem);font-weight:800;letter-spacing:-.01em}
+.ch-meta .ch-place{font-size:.85rem;color:var(--ink-faint);letter-spacing:.15em;text-transform:uppercase;margin-top:.6rem}
+.ch-body{display:grid;grid-template-columns:1.15fr .85fr;gap:5rem;align-items:start}
+.ch-body.flip{grid-template-columns:.85fr 1.15fr}
+.ch-body.flip .ch-text{order:2}
+.ch-body.flip .ch-side{order:1}
+.ch-text p{font-size:1.08rem;color:var(--ink-dim);margin-bottom:1.6rem;font-weight:300}
+.ch-text p b,.ch-text p strong{color:var(--ink);font-weight:500}
+.ch-text .drop::first-letter{font-family:var(--font-d);font-size:3.4em;font-weight:800;float:left;line-height:.82;padding-right:.12em;background:linear-gradient(180deg,var(--saffron),var(--green));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pull{font-family:var(--font-d);font-size:clamp(1.3rem,2.6vw,1.8rem);font-weight:600;line-height:1.35;color:var(--ink);border-left:3px solid var(--saffron);padding:1.2rem 0 1.2rem 1.8rem;margin:2.6rem 0;position:relative}
+.pull::before{content:'';position:absolute;left:-3px;top:0;width:3px;height:50%;background:var(--green)}
+.ch-side{position:sticky;top:7rem}
+.fact-card{background:var(--glass);border:1px solid var(--line);padding:1.7rem;margin-bottom:1.2rem;position:relative;overflow:hidden;transition:.4s;transform-style:preserve-3d;will-change:transform}
+.fact-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--saffron),transparent)}
+.fact-card:nth-child(even)::before{background:linear-gradient(90deg,var(--green),transparent)}
+.fact-card:hover{border-color:rgba(255,153,51,.35);background:rgba(255,255,255,.05)}
+.fact-card .y{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--saffron);margin-bottom:.45rem}
+.fact-card:nth-child(even) .y{color:var(--green)}
+.fact-card h4{font-family:var(--font-b);font-size:1.02rem;font-weight:600;margin-bottom:.3rem}
+.fact-card p{font-size:.86rem;color:var(--ink-dim);margin:0}
+.ch-divider{height:1px;max-width:1340px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--line) 20%,var(--line) 80%,transparent)}
+
+/* Chapter alt background */
+.chapter.alt-bg{max-width:none;background:var(--bg-2)}
+.chapter.alt-bg .ch-wrap{max-width:1340px;margin:0 auto}
+
+/* Parliament line art */
+.parliament{margin:4rem auto 0;max-width:760px;opacity:.85}
+.parliament path,.parliament line,.parliament circle,.parliament rect{stroke-dasharray:1200;stroke-dashoffset:1200;transition:stroke-dashoffset 2.8s ease}
+.parliament.draw path,.parliament.draw line,.parliament.draw circle,.parliament.draw rect{stroke-dashoffset:0}
+
+/* ---------- Stats ---------- */
+#stats{padding:7rem 2.5rem;background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.stats-grid{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:var(--line)}
+.stat{background:var(--bg-2);padding:3rem 2rem;text-align:center;transition:.4s;position:relative;overflow:hidden}
+.stat:hover{background:var(--bg-3)}
+.stat::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--saffron),var(--green));transform:scaleX(0);transition:.5s}
+.stat:hover::after{transform:scaleX(1)}
+.stat .num{font-family:var(--font-d);font-size:clamp(2.6rem,5vw,4rem);font-weight:800;background:linear-gradient(135deg,var(--saffron),var(--saffron-hot));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat:nth-child(even) .num{background:linear-gradient(135deg,var(--green),#3ee07a);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat .lbl{font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-dim);margin-top:.7rem}
+
+/* ---------- Publications ---------- */
+#publications{padding:9rem 2.5rem;max-width:1340px;margin:0 auto}
+.sec-head{text-align:center;margin-bottom:3.2rem}
+.sec-head .kick{font-size:.7rem;letter-spacing:.45em;text-transform:uppercase;color:var(--saffron);display:block;margin-bottom:1rem}
+.sec-head h2{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800}
+.sec-head p{color:var(--ink-dim);margin-top:1rem;font-weight:300}
+.pub-filters{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem}
+.pf{font-family:var(--font-b);font-size:.72rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:.6rem 1.4rem;background:transparent;border:1px solid var(--line);color:var(--ink-dim);cursor:pointer;transition:.3s}
+.pf:hover{color:var(--ink);border-color:var(--ink-dim)}
+.pf.on{background:var(--saffron);border-color:var(--saffron);color:#0a0a0e;box-shadow:var(--glow-s)}
+.pub-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:1.4rem}
+.pub{background:var(--glass);border:1px solid var(--line);padding:1.9rem;display:flex;flex-direction:column;gap:.85rem;text-decoration:none;position:relative;overflow:hidden;transition:.35s;transform-style:preserve-3d;will-change:transform}
+.pub::after{content:'↗';position:absolute;top:1.2rem;right:1.4rem;color:var(--ink-faint);font-size:1rem;transition:.3s}
+.pub:hover{border-color:rgba(255,153,51,.4);background:rgba(255,255,255,.05)}
+.pub:hover::after{color:var(--saffron);transform:translate(3px,-3px)}
+.pub .cat{font-size:.62rem;font-weight:700;letter-spacing:.28em;text-transform:uppercase}
+.pub .cat.fintech{color:var(--saffron)}
+.pub .cat.policy{color:var(--green)}
+.pub .cat.international{color:#6FB3FF}
+.pub h3{font-family:var(--font-d);font-size:1.06rem;font-weight:600;line-height:1.45;flex:1}
+.pub .meta{display:flex;justify-content:space-between;font-size:.74rem;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:.9rem;letter-spacing:.05em}
+.pub-state{text-align:center;color:var(--ink-faint);padding:3rem;font-size:.85rem;letter-spacing:.1em}
+
+/* ---------- Expertise ---------- */
+#expertise{padding:9rem 2.5rem;background:var(--bg-2);border-top:1px solid var(--line)}
+.exp-wrap{max-width:1240px;margin:0 auto}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.exp{border:1px solid var(--line);padding:2.4rem;background:var(--bg);position:relative;transition:.4s;transform-style:preserve-3d;will-change:transform;overflow:hidden}
+.exp::before{content:'';position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(255,153,51,.08),transparent 45%);opacity:0;transition:.4s}
+.exp:hover::before{opacity:1}
+.exp .idx{font-family:var(--font-d);font-size:.8rem;color:var(--ink-faint);letter-spacing:.3em}
+.exp h3{font-size:1.35rem;margin:1rem 0 1.3rem}
+.exp ul{list-style:none}
+.exp li{padding:.55rem 0;font-size:.92rem;color:var(--ink-dim);border-bottom:1px solid var(--line);display:flex;gap:.7rem;align-items:center}
+.exp li:last-child{border:none}
+.exp li::before{content:'';width:14px;height:1px;background:var(--saffron);flex-shrink:0}
+.exp:nth-child(2) li::before{background:var(--ink)}
+.exp:nth-child(3) li::before{background:var(--green)}
+
+/* ---------- Contact ---------- */
+#contact{padding:10rem 2.5rem;text-align:center;position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;top:-150px;left:50%;transform:translateX(-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(255,153,51,.09),transparent 60%);pointer-events:none}
+.contact-inner{position:relative;max-width:820px;margin:0 auto}
+#contact h2{font-size:clamp(2.6rem,7vw,5.2rem);font-weight:800;letter-spacing:-.02em;line-height:1.04}
+#contact h2 span{background:linear-gradient(90deg,var(--saffron),var(--green));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+#contact .lede{color:var(--ink-dim);font-weight:300;margin:1.6rem auto 3rem;max-width:560px}
+.contact-row{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap}
+.contact-mail{margin-top:3.2rem;font-family:var(--font-d);font-size:clamp(1.1rem,2.6vw,1.6rem);font-weight:600;letter-spacing:.02em}
+.contact-mail a{text-decoration:none;border-bottom:1px solid var(--ink-faint);padding-bottom:3px;transition:.3s}
+.contact-mail a:hover{color:var(--saffron);border-color:var(--saffron)}
+
+/* ---------- Footer ---------- */
+footer{border-top:1px solid var(--line);padding:2.2rem 2.5rem;background:var(--bg-2)}
+.foot{max-width:1340px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.8rem;color:var(--ink-faint)}
+.foot .tri{display:inline-flex;gap:4px;margin-right:.7rem;vertical-align:middle}
+.foot .tri i{width:14px;height:4px;border-radius:2px}
+.foot .tri i:nth-child(1){background:var(--saffron)}
+.foot .tri i:nth-child(2){background:var(--ink)}
+.foot .tri i:nth-child(3){background:var(--green)}
+.foot-links{display:flex;gap:1.8rem;align-items:center}
+.foot-links a{color:var(--ink-faint);text-decoration:none;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;transition:.3s}
+.foot-links a:hover{color:var(--saffron)}
+#adminDot{width:8px;height:8px;border-radius:50%;background:var(--ink-faint);opacity:.4;cursor:pointer;transition:.3s}
+#adminDot:hover{background:var(--saffron);opacity:1;box-shadow:var(--glow-s)}
+
+/* ---------- Admin ---------- */
+.admin-overlay{position:fixed;inset:0;background:rgba(5,5,8,.85);backdrop-filter:blur(14px);z-index:5000;display:none;align-items:center;justify-content:center;padding:2rem}
+.admin-overlay.open{display:flex}
+.admin-box{width:100%;max-width:640px;background:var(--bg-2);border:1px solid var(--line);position:relative;max-height:88vh;overflow-y:auto}
+.admin-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--saffron),#fff,var(--green))}
+.admin-pad{padding:2.6rem}
+.admin-box h3{font-size:1.5rem;margin-bottom:.4rem}
+.admin-box .sub{font-size:.85rem;color:var(--ink-dim);margin-bottom:1.8rem}
+.admin-close{position:absolute;top:1.1rem;right:1.3rem;background:none;border:none;color:var(--ink-faint);font-size:1.5rem;cursor:pointer;transition:.3s}
+.admin-close:hover{color:var(--saffron);transform:rotate(90deg)}
+.admin-field{width:100%;padding:1rem 1.1rem;background:var(--bg);border:1px solid var(--line);color:var(--ink);font-family:var(--font-b);font-size:.95rem;margin-bottom:1rem;transition:.3s}
+.admin-field:focus{outline:none;border-color:var(--saffron)}
+.admin-err{color:#ff6b6b;font-size:.8rem;margin-bottom:1rem;display:none}
+.admin-grid{display:grid;gap:1rem}
+.admin-card{border:1px solid var(--line);background:var(--glass);padding:1.4rem;display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.admin-card .t{font-weight:600;font-size:.95rem}
+.admin-card .d{font-size:.78rem;color:var(--ink-dim);margin-top:.2rem}
+.admin-btn{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.65rem 1.2rem;background:var(--saffron);color:#0a0a0e;border:none;cursor:pointer;text-decoration:none;white-space:nowrap;transition:.3s}
+.admin-btn:hover{box-shadow:var(--glow-s)}
+.admin-btn.g{background:var(--green);color:#fff}
+.admin-btn.g:hover{box-shadow:var(--glow-g)}
+.admin-btn.ghost{background:transparent;border:1px solid var(--line);color:var(--ink-dim)}
+.admin-btn.ghost:hover{color:var(--ink);border-color:var(--ink-dim);box-shadow:none}
+.admin-note{font-size:.74rem;color:var(--ink-faint);margin-top:1.6rem;line-height:1.7;border-top:1px solid var(--line);padding-top:1.2rem}
+
+/* ---------- Reveal ---------- */
+.rv{opacity:0;transform:translateY(46px);transition:opacity .9s cubic-bezier(.2,.7,.3,1),transform .9s cubic-bezier(.2,.7,.3,1)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+
+/* ---------- Responsive ---------- */
+@media(max-width:1024px){
+  .ch-body,.ch-body.flip{grid-template-columns:1fr;gap:3rem}
+  .ch-body.flip .ch-text{order:1}.ch-body.flip .ch-side{order:2}
+  .ch-side{position:static}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .exp-grid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .burger{display:flex}
+  .nav-links.open{display:flex;position:fixed;inset:0;background:rgba(8,8,12,.97);flex-direction:column;align-items:center;justify-content:center;gap:2.4rem;z-index:1001}
+  .nav-links.open a{font-size:1.05rem}
+  .chapter{padding:6rem 1.4rem}
+  #publications,#expertise,#contact{padding-left:1.4rem;padding-right:1.4rem}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-inner{padding:7rem 1.2rem 5rem}
+}
+</style>
 </head>
 <body>
-    <!-- Indian Flag Bar at Top -->
-    <div class="flag-bar"></div>
 
-    <nav class="nav" id="nav">
-        <div class="nav-inner">
-            <a href="#" class="nav-logo">Raj <span>Shekhar</span></a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#journey">Journey</a></li>
-                <li><a href="#current-role">Work</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#expertise">Expertise</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+<!-- Preloader -->
+<div id="loader">
+  <div class="loader-name">Raj Shekhar</div>
+  <div class="loader-bars"><span></span><span></span><span></span></div>
+</div>
+
+<div class="noise"></div>
+<div id="progress"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-ring"></div>
+
+<!-- Nav -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="logo">RAJ<i>SHEKHAR</i></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#ch1">Story</a></li>
+      <li><a href="#publications">Writing</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Work with me</a>
+    <button class="burger" id="burger" aria-label="menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header id="hero">
+  <canvas id="scene"></canvas>
+  <div class="hero-inner">
+    <div class="hero-photo" data-tilt>
+      <div class="ring"></div>
+      <div class="ph" id="heroPhoto">
+        <!-- To use your photo: replace RS below with  <img src="photo.jpg" alt="Raj Shekhar"> -->
+        RS
+      </div>
+    </div>
+    <div class="hero-kicker">Law &nbsp;·&nbsp; Policy &nbsp;·&nbsp; Nation</div>
+    <h1 class="hero-title">
+      <span class="w1" id="w1">RAJ</span>&nbsp;
+      <span class="w2" id="w2">SHEKHAR</span>
+    </h1>
+    <p class="hero-sub">A lawyer who walked out of the boardroom to help write the rules of the republic. <b>This is the story of that turn</b> — told in five chapters, from a temple town in Jharkhand to the corridors of Parliament.</p>
+    <div class="hero-actions">
+      <a href="#ch1" class="btn btn-fill">Begin the story</a>
+      <a href="#publications" class="btn btn-ghost">Read the work</a>
+      <a href="Raj_Shekhar_CV.pdf" class="btn btn-cv" download>↓ CV</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="line"></div></div>
+</header>
+
+<!-- Marquee -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Legislative Research <b>●</b></span><span>Public Policy <b>●</b></span><span>Political Strategy <b>●</b></span><span>FinTech Regulation <b>●</b></span><span>G20 · Y20 India <b>●</b></span><span>Parliamentary Affairs <b>●</b></span>
+    <span>Legislative Research <b>●</b></span><span>Public Policy <b>●</b></span><span>Political Strategy <b>●</b></span><span>FinTech Regulation <b>●</b></span><span>G20 · Y20 India <b>●</b></span><span>Parliamentary Affairs <b>●</b></span>
+  </div>
+</div>
+
+<!-- ============ CHAPTER 1 ============ -->
+<section class="chapter" id="ch1">
+  <div class="ch-head rv">
+    <div class="ch-num">01</div>
+    <div class="ch-meta">
+      <span class="ch-label">Chapter One</span>
+      <h2>The Boy Who Asked Why</h2>
+      <div class="ch-place">Deoghar, Jharkhand</div>
+    </div>
+  </div>
+  <div class="ch-body">
+    <div class="ch-text">
+      <p class="drop rv">Every story has a setting, and mine begins in Deoghar — a temple town in Jharkhand where tradition runs deep and questions are usually answered with "because that's how it is." That answer never worked on me.</p>
+      <p class="rv">I was the science student who kept wandering into arguments about society. Physics and mathematics trained my logic at <b>St. Xavier's</b>, but the questions that kept me up at night were never about equations. They were about rules. Who makes them? Who do they serve? And who gets left out when they're written carelessly?</p>
+      <div class="pull rv">Some people inherit politics. Some inherit business. I inherited curiosity — and it turned out to be the most useful asset of all.</div>
+      <p class="rv">When it came time to choose a path, I chose law. Not as a fallback, not as a family tradition, but as the one discipline where the questions I cared about were the entire syllabus.</p>
+    </div>
+    <div class="ch-side">
+      <div class="fact-card rv" data-tilt><div class="y">Origin</div><h4>Deoghar, Jharkhand</h4><p>A temple town that taught patience, ritual, and the art of the long game.</p></div>
+      <div class="fact-card rv d1" data-tilt><div class="y">Schooling</div><h4>Science Stream, PCM+B</h4><p>St. Xavier's High School. Logic first; everything else followed.</p></div>
+      <div class="fact-card rv d2" data-tilt><div class="y">The Choice</div><h4>Law, deliberately</h4><p>Chosen as an instrument of change, not a safety net.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ch-divider"></div>
+
+<!-- ============ CHAPTER 2 ============ -->
+<section class="chapter" id="ch2">
+  <div class="ch-head rv">
+    <div class="ch-num">02</div>
+    <div class="ch-meta">
+      <span class="ch-label">Chapter Two</span>
+      <h2>Five Years of Fire</h2>
+      <div class="ch-place">NUSRL, Ranchi · 2019–2024</div>
+    </div>
+  </div>
+  <div class="ch-body flip">
+    <div class="ch-text">
+      <p class="drop rv">Law school is where most people learn the law. I treated it as a place to stress-test ideas in public. If there was a debate, I entered it. If there was a stage, I took it. If there was a journal, I wrote for it.</p>
+      <p class="rv">By graduation, the scoreboard read: <b>90+ published articles</b> across platforms like JURIST, Oxford Political Review, and The Fletcher Forum. <b>Best Orator.</b> Winner of the <b>Inter-University Constitutional Quiz</b>. A <b>Millennium Fellow</b>, selected from a pool of over thirty thousand applicants worldwide.</p>
+      <p class="rv">But the numbers were never the point. The point was discovering my voice — the realisation that a well-built argument, delivered at the right moment, could move a room. And that rooms, eventually, move countries.</p>
+      <div class="pull rv">I didn't just attend law school. I used it — every podium, every byline, every late-night editorial fight.</div>
+      <p class="rv">I also learned to build. Convenor of the Literary Society. Founding member of the Centre for Research in ADR. Part of the body that drafted the Student Bar Association's constitution. Institutions, I learned, don't build themselves.</p>
+    </div>
+    <div class="ch-side">
+      <div class="fact-card rv" data-tilt><div class="y">2019–2024</div><h4>B.A., LL.B (Hons.)</h4><p>National University of Study and Research in Law, Ranchi.</p></div>
+      <div class="fact-card rv d1" data-tilt><div class="y">Output</div><h4>90+ Publications</h4><p>JURIST · Oxford Political Review · Fletcher Forum · IndiaCorpLaw · and more.</p></div>
+      <div class="fact-card rv d2" data-tilt><div class="y">Global</div><h4>Millennium Fellow</h4><p>Selected from 30,000+ applicants worldwide.</p></div>
+      <div class="fact-card rv d3" data-tilt><div class="y">Stage</div><h4>Best Orator</h4><p>Plus Constitutional Quiz champion and debate finalist, repeatedly.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ch-divider"></div>
+
+<!-- ============ CHAPTER 3 ============ -->
+<section class="chapter" id="ch3">
+  <div class="ch-head rv">
+    <div class="ch-num">03</div>
+    <div class="ch-meta">
+      <span class="ch-label">Chapter Three</span>
+      <h2>The Golden Cage</h2>
+      <div class="ch-place">Khaitan & Co · Nishith Desai Associates · Bengaluru</div>
+    </div>
+  </div>
+  <div class="ch-body">
+    <div class="ch-text">
+      <p class="drop rv">The conventional summit of an Indian law graduate's ambition is a desk at a top-tier firm. I reached it. At <b>Khaitan & Co</b>, one of India's most storied law firms, I advised the architects of the country's digital economy — FinTech startups, payment companies, digital lenders — on RBI regulations, data privacy, and compliance.</p>
+      <p class="rv">The work was sharp. The stakes were real. Every memo I wrote helped someone navigate the rulebook of India's financial system. At <b>Nishith Desai Associates</b> before that, I had dissected investment funds and cross-border structures. I was good at reading the rules.</p>
+      <div class="pull rv">And then the question that changed everything: I can read the playbook all my life. But who is in the room where it's written?</div>
+      <p class="rv">Corporate law gave me precision, discipline, and a front-row view of how regulation shapes markets. But a front-row seat is still a seat in the audience. I wanted to be on the other side of the table — where the rules are made, debated, and rewritten. So I did the unthinkable for a young associate on a good trajectory: <b>I walked.</b></p>
+    </div>
+    <div class="ch-side">
+      <div class="fact-card rv" data-tilt><div class="y">2024–2025</div><h4>Associate, Khaitan & Co</h4><p>Banking & Finance (FinTech) — RBI regulation, payments, digital lending, data privacy.</p></div>
+      <div class="fact-card rv d1" data-tilt><div class="y">Foundation</div><h4>Nishith Desai Associates</h4><p>Investment funds, IFSC compliance, cross-border structures.</p></div>
+      <div class="fact-card rv d2" data-tilt><div class="y">The Skill</div><h4>Regulatory fluency</h4><p>The rare ability to read a statute the way markets do.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="ch-divider"></div>
+
+<!-- ============ CHAPTER 4 ============ -->
+<section class="chapter alt-bg" id="ch4">
+  <div class="ch-wrap">
+    <div class="ch-head rv">
+      <div class="ch-num">04</div>
+      <div class="ch-meta">
+        <span class="ch-label">Chapter Four</span>
+        <h2>The World Calls</h2>
+        <div class="ch-place">G20 · Y20 India · KAS · FCDO · Commonwealth</div>
+      </div>
+    </div>
+    <div class="ch-body flip">
+      <div class="ch-text">
+        <p class="drop rv">The pivot wasn't a leap into the dark — it was a runway I had been building all along. When India assumed the <b>G20 Presidency</b>, I was already inside the machinery: a Policy and Research Associate at the <b>Y20 India Secretariat</b>, the official youth engagement group of the G20.</p>
+        <p class="rv">There, I co-authored <b>White Papers on behalf of India</b> — on the Future of Work, Climate Change, Peacebuilding, Youth in Democracy, and Health. Documents that carried the country's voice into global negotiation rooms. At the <b>Y20 Summit in Varanasi</b>, I served as Liaison Officer, watching diplomacy happen at handshake distance.</p>
+        <p class="rv">Then came the recognitions that confirmed the new direction: selection as <b>one of 26 Rising Leaders nationwide</b> by the Konrad-Adenauer-Stiftung, Germany's premier political foundation. Research for the <b>UK's Foreign, Commonwealth and Development Office</b> on comparative refugee law across six jurisdictions. Engagement with the <b>Commonwealth Youth Council</b> on ASEAN governance dialogues.</p>
+        <div class="pull rv">Policy stopped being a subject I wrote about. It became a room I was invited into — in Delhi, in Varanasi, and beyond India's borders.</div>
+        <p class="rv">Today, as <b>Regional Coordinator for Central Asia and Eastern Europe</b> at the Indian Youth Diplomacy Forum, I keep one foot in that world — because the best domestic policy is written by people who have seen how the rest of the world writes theirs.</p>
+      </div>
+      <div class="ch-side">
+        <div class="fact-card rv" data-tilt><div class="y">2022–2023</div><h4>Y20 India (G20)</h4><p>Policy & Research Associate. Co-authored India's official Y20 White Papers. Liaison Officer, Varanasi Summit.</p></div>
+        <div class="fact-card rv d1" data-tilt><div class="y">2025</div><h4>KAS Rising Leader</h4><p>1 of 26 selected nationwide by Konrad-Adenauer-Stiftung.</p></div>
+        <div class="fact-card rv d2" data-tilt><div class="y">2021–2022</div><h4>FCDO, United Kingdom</h4><p>Comparative refugee-law research across six jurisdictions.</p></div>
+        <div class="fact-card rv d3" data-tilt><div class="y">Ongoing</div><h4>Youth Diplomacy</h4><p>IYDF Regional Coordinator — Central Asia & Eastern Europe. Commonwealth engagement.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ch-divider"></div>
+
+<!-- ============ CHAPTER 5 ============ -->
+<section class="chapter" id="ch5">
+  <div class="ch-head rv">
+    <div class="ch-num">05</div>
+    <div class="ch-meta">
+      <span class="ch-label">Chapter Five</span>
+      <h2>The Corridors of Power</h2>
+      <div class="ch-place">Nation First Policy Research Centre · New Delhi · Now</div>
+    </div>
+  </div>
+  <div class="ch-body">
+    <div class="ch-text">
+      <p class="drop rv">Today I work where I always wanted to be: at the <b>Parliament and Legislative Affairs Division</b> of the Nation First Policy Research Centre — the layer of Indian democracy where bills are dissected line by line, where a single clause can decide the fate of an industry, and where research quietly becomes law.</p>
+      <p class="rv">My days are spent in legislative research, parliamentary process analysis, and evidence-based policy recommendations. The corporate lawyer in me reads every bill the way a market would. The policy researcher in me asks what it means for the citizen. The debater in me makes sure the argument survives the committee room.</p>
+      <div class="pull rv">Legislation is as much about persuasion and process as it is about drafting. The best policies are the ones that survive scrutiny beyond conference rooms.</div>
+      <p class="rv">This is not the end of the story. It's the part where the training, the publications, the pivot, and the world stage converge into a single sentence: <b>I help write the rules of the republic — and I'm just getting started.</b></p>
+    </div>
+    <div class="ch-side">
+      <div class="fact-card rv" data-tilt><div class="y">Present</div><h4>Consultant, NFPRC</h4><p>Legislative Research & Public Policy — Parliament and Legislative Affairs Division.</p></div>
+      <div class="fact-card rv d1" data-tilt><div class="y">Craft</div><h4>Bills → Briefs → Strategy</h4><p>Legislative analysis, policy briefs, regulatory impact, stakeholder engagement.</p></div>
+      <div class="fact-card rv d2" data-tilt><div class="y">Edge</div><h4>Law × Policy × Politics</h4><p>Trained in firms, tested on global stages, applied in Delhi.</p></div>
+    </div>
+  </div>
+
+  <!-- Parliament line art -->
+  <svg class="parliament" id="parliamentSvg" viewBox="0 0 760 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <defs>
+      <linearGradient id="triGrad" x1="0" y1="0" x2="760" y2="0" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#FF9933"/><stop offset=".5" stop-color="#F4F2EC"/><stop offset="1" stop-color="#1DB954"/>
+      </linearGradient>
+    </defs>
+    <g stroke="url(#triGrad)" stroke-width="1.5">
+      <line x1="20" y1="218" x2="740" y2="218"/>
+      <rect x="60" y="200" width="640" height="18"/>
+      <rect x="90" y="130" width="580" height="70"/>
+      <line x1="120" y1="138" x2="120" y2="192"/><line x1="160" y1="138" x2="160" y2="192"/><line x1="200" y1="138" x2="200" y2="192"/><line x1="240" y1="138" x2="240" y2="192"/><line x1="280" y1="138" x2="280" y2="192"/>
+      <line x1="480" y1="138" x2="480" y2="192"/><line x1="520" y1="138" x2="520" y2="192"/><line x1="560" y1="138" x2="560" y2="192"/><line x1="600" y1="138" x2="600" y2="192"/><line x1="640" y1="138" x2="640" y2="192"/>
+      <rect x="320" y="120" width="120" height="80"/>
+      <path d="M320 120 Q380 58 440 120"/>
+      <path d="M338 120 Q380 74 422 120"/>
+      <line x1="380" y1="64" x2="380" y2="40"/>
+      <circle cx="380" cy="34" r="6"/>
+      <path d="M90 130 L110 108 L650 108 L670 130"/>
+      <rect x="180" y="160" width="26" height="32"/><rect x="554" y="160" width="26" height="32"/>
+      <rect x="356" y="150" width="48" height="50"/>
+    </g>
+  </svg>
+</section>
+
+<!-- ============ STATS ============ -->
+<section id="stats">
+  <div class="stats-grid">
+    <div class="stat rv"><div class="num" data-count="90" data-suffix="+">0</div><div class="lbl">Published Articles</div></div>
+    <div class="stat rv d1"><div class="num" data-count="26" data-prefix="1/">0</div><div class="lbl">KAS Rising Leaders, India</div></div>
+    <div class="stat rv d2"><div class="num" data-count="30" data-suffix="K+">0</div><div class="lbl">Millennium Fellowship Pool</div></div>
+    <div class="stat rv d3"><div class="num" data-static="G20">G20</div><div class="lbl">Y20 India · Official Engagement</div></div>
+  </div>
+</section>
+
+<!-- ============ PUBLICATIONS ============ -->
+<section id="publications">
+  <div class="sec-head rv">
+    <span class="kick">The Paper Trail</span>
+    <h2>Selected Writing</h2>
+    <p>Live from a Google Sheet — updated whenever a new piece drops.</p>
+  </div>
+  <div class="pub-filters rv" id="pubFilters">
+    <button class="pf on" data-f="all">All</button>
+    <button class="pf" data-f="fintech">FinTech</button>
+    <button class="pf" data-f="policy">Policy</button>
+    <button class="pf" data-f="international">International</button>
+  </div>
+  <div class="pub-grid" id="pubGrid">
+    <div class="pub-state">Summoning the archive…</div>
+  </div>
+</section>
+
+<!-- ============ EXPERTISE ============ -->
+<section id="expertise">
+  <div class="exp-wrap">
+    <div class="sec-head rv">
+      <span class="kick">The Toolkit</span>
+      <h2>What I Bring to the Table</h2>
+    </div>
+    <div class="exp-grid">
+      <div class="exp rv" data-tilt>
+        <div class="idx">/ 01</div>
+        <h3>Legislative & Parliamentary</h3>
+        <ul><li>Bill analysis & legislative research</li><li>Parliamentary process & procedure</li><li>Regulatory impact assessment</li><li>Policy briefs & committee prep</li><li>Governance reform strategy</li></ul>
+      </div>
+      <div class="exp rv d1" data-tilt>
+        <div class="idx">/ 02</div>
+        <h3>FinTech & Technology Law</h3>
+        <ul><li>RBI regulation & compliance</li><li>Data privacy & protection</li><li>Payments & digital lending</li><li>Cybersecurity frameworks</li><li>Emerging-tech policy</li></ul>
+      </div>
+      <div class="exp rv d2" data-tilt>
+        <div class="idx">/ 03</div>
+        <h3>International & Diplomatic</h3>
+        <ul><li>Youth diplomacy (G20 / Y20)</li><li>Track II engagement</li><li>ASEAN & Commonwealth affairs</li><li>Comparative governance</li><li>White papers & multilateral drafting</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact">
+  <div class="contact-inner">
+    <h2 class="rv">Let's write<br><span>what's next.</span></h2>
+    <p class="lede rv">Policy research, legislative strategy, political communication — if it sits at the intersection of law and the nation, I'm interested.</p>
+    <div class="contact-row rv">
+      <a class="btn btn-fill" href="mailto:rajshekhar.law@gmail.com">Email me</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a class="btn btn-cv" href="Raj_Shekhar_CV.pdf" download>↓ Download CV</a>
+    </div>
+    <div class="contact-mail rv"><a href="mailto:rajshekhar.law@gmail.com">rajshekhar.law@gmail.com</a></div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="foot">
+    <div><span class="tri"><i></i><i></i><i></i></span>© 2025 Raj Shekhar · New Delhi</div>
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:rajshekhar.law@gmail.com">Email</a>
+      <span id="adminDot" title=""></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ ADMIN ============ -->
+<div class="admin-overlay" id="adminOverlay">
+  <div class="admin-box">
+    <button class="admin-close" id="adminClose">×</button>
+
+    <!-- Login -->
+    <div class="admin-pad" id="adminLogin">
+      <h3>Admin Access</h3>
+      <p class="sub">Enter your passphrase to open the control room.</p>
+      <input type="password" class="admin-field" id="adminPass" placeholder="Passphrase">
+      <div class="admin-err" id="adminErr">Wrong passphrase. Try again.</div>
+      <button class="admin-btn" id="adminGo" style="width:100%">Unlock</button>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="admin-pad" id="adminDash" style="display:none">
+      <h3>Control Room</h3>
+      <p class="sub">Everything you can update, in one place.</p>
+      <div class="admin-grid">
+        <div class="admin-card">
+          <div><div class="t">Publications</div><div class="d">Add or edit rows in your Google Sheet. The site pulls from it live.</div></div>
+          <a class="admin-btn" id="sheetEditBtn" href="#" target="_blank" rel="noopener">Open Sheet</a>
         </div>
-    </nav>
-
-    <section class="hero" id="home">
-        <!-- Parliament Building Background -->
-        <div class="parliament-bg">
-            <svg class="parliament-svg" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice">
-                <!-- Base Platform -->
-                <rect x="100" y="250" width="1000" height="50" fill="currentColor"/>
-                <rect x="150" y="240" width="900" height="15" fill="currentColor"/>
-                
-                <!-- Main Building Body -->
-                <rect x="200" y="150" width="800" height="100" fill="currentColor"/>
-                
-                <!-- Columns -->
-                <rect x="220" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="270" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="320" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="370" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="420" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="470" y="160" width="20" height="80" fill="currentColor"/>
-                
-                <rect x="710" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="760" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="810" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="860" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="910" y="160" width="20" height="80" fill="currentColor"/>
-                <rect x="960" y="160" width="20" height="80" fill="currentColor"/>
-                
-                <!-- Central Dome -->
-                <ellipse cx="600" cy="150" rx="120" ry="60" fill="currentColor"/>
-                <rect x="520" y="150" width="160" height="100" fill="currentColor"/>
-                <ellipse cx="600" cy="100" rx="80" ry="40" fill="currentColor"/>
-                <rect x="540" y="100" width="120" height="50" fill="currentColor"/>
-                <ellipse cx="600" cy="70" rx="50" ry="30" fill="currentColor"/>
-                <rect x="560" y="70" width="80" height="30" fill="currentColor"/>
-                
-                <!-- Dome Top -->
-                <ellipse cx="600" cy="50" rx="30" ry="20" fill="currentColor"/>
-                <rect x="595" y="30" width="10" height="25" fill="currentColor"/>
-                <circle cx="600" cy="25" r="8" fill="currentColor"/>
-                
-                <!-- Side Wings -->
-                <rect x="100" y="180" width="100" height="70" fill="currentColor"/>
-                <rect x="1000" y="180" width="100" height="70" fill="currentColor"/>
-                
-                <!-- Wing Roofs -->
-                <polygon points="100,180 150,150 200,180" fill="currentColor"/>
-                <polygon points="1000,180 1050,150 1100,180" fill="currentColor"/>
-                
-                <!-- Steps -->
-                <rect x="500" y="250" width="200" height="10" fill="currentColor"/>
-                <rect x="520" y="260" width="160" height="10" fill="currentColor"/>
-                <rect x="540" y="270" width="120" height="10" fill="currentColor"/>
-            </svg>
+        <div class="admin-card">
+          <div><div class="t">Refresh publications</div><div class="d">Re-fetch the sheet right now without reloading the page.</div></div>
+          <button class="admin-btn g" id="refreshPubs">Refresh</button>
         </div>
-
-        <!-- Profile at Top -->
-        <div class="hero-profile">
-            <div class="profile-photo-wrapper">
-                <div class="profile-ring"></div>
-                <div class="profile-photo" id="profilePhoto">
-                   <img src="photo.jpg" alt="Raj Shekhar">
-                </div>
-            </div>
-            <h1>Raj Shekhar</h1>
-            <p class="tagline">Public Policy & Political Strategy</p>
-            <p class="current-role">Consultant, Nation First Policy Research Centre</p>
-            
-            <div class="profile-links">
-                <a href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener" title="LinkedIn">in</a>
-                <a href="mailto:rajshekhar.law@gmail.com" title="Email">✉</a>
-            </div>
-
-            <a href="Raj_Shekhar_CV.pdf" class="download-cv-hero" download>↓ Download CV</a>
+        <div class="admin-card">
+          <div><div class="t">Edit site text & story</div><div class="d">Open this file in GitHub's editor; change any wording and commit.</div></div>
+          <a class="admin-btn ghost" id="ghEditBtn" href="#" target="_blank" rel="noopener">Edit on GitHub</a>
         </div>
-
-        <!-- Bio Content -->
-        <div class="hero-content">
-            <p class="hero-bio">Some careers follow a straight line. Mine took a deliberate turn. <strong>From advising FinTech startups on regulatory compliance to shaping the policies that govern them.</strong> Today, I work at the intersection of law, legislation, and democratic governance, driven by a simple belief: <strong>policy is not just drafted, it is debated, negotiated, and ultimately, lived</strong>.</p>
-
-            <p class="hero-bio">My journey through India's leading law firm, <strong>Khaitan & Co</strong> , gave me a front row seat to how regulations shape markets. But it also revealed a deeper truth: the real action happens before the law reaches the statute books. That realization led me from corporate practice to the <strong>Parliament and Legislative Affairs Division</strong>, where I now contribute to the very process of lawmaking.</p>
-
-            <blockquote class="hero-quote">
-                Legislation is as much about persuasion and process as it is about drafting. The best policies are those that survive scrutiny beyond conference rooms.
-            </blockquote>
-
-            <p class="hero-bio">From co-authoring White Papers for <strong>Y20 India</strong> (the official youth engagement group of G20) to being selected among <strong>26 leaders nationwide</strong> for the Konrad Adenauer Stiftung Rising Leaders Programme, I have engaged with governance at both national and international levels. My work with the <strong>Commonwealth Youth Council</strong> and the <strong>Indian Youth Diplomacy Forum</strong> continues this mission, bridging policy research with diplomatic action.</p>
-
-            <div class="hero-actions">
-                <a href="#contact" class="btn btn-primary">Work With Me</a>
-                <a href="#publications" class="btn btn-outline">Read My Work</a>
-            </div>
+        <div class="admin-card">
+          <div><div class="t">Photo & CV</div><div class="d">Upload <b>photo.jpg</b> and <b>Raj_Shekhar_CV.pdf</b> to the repo root. Photo: swap "RS" in the hero for an &lt;img&gt; tag (one line, marked in code).</div></div>
         </div>
-    </section>
+      </div>
+      <div class="admin-note">
+        <b>How publications work:</b> Sheet columns must be <b>Title | URL | Publisher | Category | Date</b>. Category = fintech, policy, or international.<br><br>
+        <b>Honest note on security:</b> this passphrase is checked in the browser and is visible in the page source. It keeps casual visitors out, but it is not bank-grade security — which is fine, because this panel only contains shortcuts, not secrets.
+      </div>
+    </div>
+  </div>
+</div>
 
-    <div class="flag-divider"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+/* ============================================================
+   CONFIG — edit these values in one place
+   ============================================================ */
+const SITE = {
+  adminPassword: 'shekhar2025',            // ← change me
+  publicationsCSV: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Krbb25vCYV-0SEigQIdB9TAB9j8l-MLs_zzOvhYNiCBXM-rwP1VWPJA-3Q7RfggcoJL6cune351A/pub?gid=0&single=true&output=csv',
+  sheetEditURL: 'https://docs.google.com/spreadsheets/',   // ← paste your sheet's EDIT link
+  githubEditURL: 'https://github.com/',                    // ← paste your repo's index.html edit link
+};
 
-    <section id="journey">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">The Path</div>
-                <h2 class="section-title">A Deliberate Transition</h2>
-                <p class="section-subtitle">From regulatory advisory to legislative research, understanding how policy moves from idea to institution</p>
-            </div>
+/* ---------- Preloader ---------- */
+window.addEventListener('load',()=>{setTimeout(()=>document.getElementById('loader').classList.add('done'),1400)});
 
-            <div class="journey-content">
-                <div class="journey-narrative reveal">
-                    <h3>Why I Left Corporate Law</h3>
-                    <p>After years of advising clients on <span class="highlight">RBI regulations, data privacy frameworks, and FinTech compliance</span>, I found myself increasingly drawn to a different question: <em>Who writes these rules, and how?</em></p>
-                    <p>Corporate law taught me to navigate regulations. Policy work lets me help shape them. It is the difference between reading the playbook and being in the room where it is written.</p>
-                    <p>The transition was not accidental. It was built through deliberate choices: joining <strong>Y20 India</strong> during India's G20 presidency, completing leadership training with <strong>Konrad Adenauer Stiftung</strong>, and engaging with governance dialogues across ASEAN and the Commonwealth.</p>
-                    <p>Today, I bring a rare combination to policy research: the <strong>precision of legal training</strong> and the <strong>strategic thinking of political engagement</strong>.</p>
-                </div>
+/* ---------- Hero letters ---------- */
+function splitLetters(id,start,lit){
+  const el=document.getElementById(id);const t=el.textContent;el.textContent='';
+  [...t].forEach((c,i)=>{const s=document.createElement('span');s.className='l'+(lit&&lit.includes(i)?' lit':'');s.textContent=c;s.style.animationDelay=(start+i*0.06)+'s';el.appendChild(s)});
+}
+splitLetters('w1',0.25);splitLetters('w2',0.5,[0]);
 
-                <div class="journey-milestones">
-                    <div class="milestone reveal"><div class="milestone-year">2025</div><h4>Nation First Policy Research Centre</h4><p>Parliament and Legislative Affairs Division</p></div>
-                    <div class="milestone reveal"><div class="milestone-year">2025</div><h4>Konrad Adenauer Stiftung</h4><p>Rising Leaders Programme, 1 of 26 nationwide</p></div>
-                    <div class="milestone reveal"><div class="milestone-year">2024 to 2025</div><h4>Khaitan & Co</h4><p>Associate, Banking and Finance (FinTech)</p></div>
-                    <div class="milestone reveal"><div class="milestone-year">2022 to 2023</div><h4>Y20 India (G20)</h4><p>Policy and Research Associate, White Papers</p></div>
-                    <div class="milestone reveal"><div class="milestone-year">2022</div><h4>Millennium Campus Network</h4><p>Fellow, selected among 30,000+ globally</p></div>
-                </div>
-            </div>
-        </div>
-    </section>
+/* ---------- Custom cursor ---------- */
+const dot=document.querySelector('.cursor-dot'),ring=document.querySelector('.cursor-ring');
+let mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.16;ry+=(my-ry)*.16;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,[data-tilt]').forEach(el=>{el.addEventListener('mouseenter',()=>ring.classList.add('hovering'));el.addEventListener('mouseleave',()=>ring.classList.remove('hovering'))});
 
-    <div class="flag-divider"></div>
+/* ---------- Nav / progress ---------- */
+const nav=document.getElementById('nav');
+addEventListener('scroll',()=>{
+  nav.classList.toggle('scrolled',scrollY>40);
+  const h=document.documentElement.scrollHeight-innerHeight;
+  document.getElementById('progress').style.width=(scrollY/h*100)+'%';
+});
+const burger=document.getElementById('burger'),navLinks=document.getElementById('navLinks');
+burger.addEventListener('click',()=>navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>navLinks.classList.remove('open')));
 
-    <section id="current-role">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">Present Focus</div>
-                <h2 class="section-title">Where I Work Now</h2>
-                <p class="section-subtitle">Contributing to governance through research, analysis, and diplomatic engagement</p>
-            </div>
+/* ---------- Reveals ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-            <div class="role-grid">
-                <div class="role-card reveal">
-                    <div class="role-card-label">Primary Role</div>
-                    <h3>Consultant, Legislative Research and Public Policy</h3>
-                    <p class="organization">Nation First Policy Research Centre (NFPRC)</p>
-                    <p>Parliament and Legislative Affairs Division, contributing to evidence based policy recommendations and legislative impact assessments.</p>
-                    <ul><li>Legislative research and parliamentary process analysis</li><li>Policy brief development and stakeholder engagement</li><li>Regulatory impact assessment and governance reform</li></ul>
-                </div>
+/* ---------- Parliament draw ---------- */
+const pio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('draw');pio.unobserve(e.target)}}),{threshold:.3});
+pio.observe(document.getElementById('parliamentSvg'));
 
-                <div class="role-card reveal">
-                    <div class="role-card-label">International Engagement</div>
-                    <h3>Regional Coordinator, Central Asia and Eastern Europe</h3>
-                    <p class="organization">Indian Youth Diplomacy Forum (IYDF)</p>
-                    <p>Leading youth diplomacy initiatives and policy dialogues across regions.</p>
-                    <ul><li>Track II diplomacy and cultural exchange</li><li>Policy dialogue coordination</li><li>Youth leadership across 15+ countries</li></ul>
-                </div>
-            </div>
+/* ---------- Counters ---------- */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;const el=e.target;cio.unobserve(el);
+  if(el.dataset.static)return;
+  const end=+el.dataset.count,pre=el.dataset.prefix||'',suf=el.dataset.suffix||'';const t0=performance.now();
+  (function tick(t){const p=Math.min((t-t0)/1600,1);const v=Math.floor(end*(1-Math.pow(1-p,3)));el.textContent=pre+v+suf;if(p<1)requestAnimationFrame(tick)})(t0);
+}),{threshold:.6});
+document.querySelectorAll('.stat .num').forEach(el=>cio.observe(el));
 
-            <div class="internships-summary reveal">
-                <h4>Professional Training and Internships</h4>
-                <div class="internship-tags">
-                    <span class="internship-tag">Khaitan & Co, Data Privacy</span>
-                    <span class="internship-tag">Nishith Desai Associates, Investment Funds</span>
-                    <span class="internship-tag">Foreign Commonwealth Office (UK)</span>
-                    <span class="internship-tag">High Court of Delhi</span>
-                    <span class="internship-tag">Gaggar & Partners, Competition Law</span>
-                    <span class="internship-tag">Jharkhand Education Project Council</span>
-                </div>
-            </div>
-        </div>
-    </section>
+/* ---------- 3D tilt ---------- */
+document.querySelectorAll('[data-tilt]').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(800px) rotateY(${x*9}deg) rotateX(${-y*9}deg) translateY(-3px)`;
+    card.style.setProperty('--mx',((x+.5)*100)+'%');card.style.setProperty('--my',((y+.5)*100)+'%');
+  });
+  card.addEventListener('mouseleave',()=>card.style.transform='');
+});
+document.querySelectorAll('.exp').forEach(card=>{
+  card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();card.style.setProperty('--mx',((e.clientX-r.left)/r.width*100)+'%');card.style.setProperty('--my',((e.clientY-r.top)/r.height*100)+'%')});
+});
 
-    <section id="publications">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">Thought Leadership</div>
-                <h2 class="section-title">Selected Publications</h2>
-                <p class="section-subtitle">Writing on FinTech regulation, public policy, and international affairs</p>
-            </div>
+/* ============================================================
+   THREE.JS — tricolor particle field + drifting wireframes
+   ============================================================ */
+(function(){
+  const canvas=document.getElementById('scene');
+  const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  const scene=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(60,1,0.1,100);camera.position.z=8;
 
-            <div class="pub-grid" id="publicationsGrid">
-                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">IndiaCorpLaw</p><h4 class="pub-title"><a href="https://indiacorplaw.in/2022/11/29/digital-personal-data-protection-bill-vis-a-vis-gdpr/" target="_blank">Digital Personal Data Protection Bill vis a vis GDPR</a></h4><p class="pub-meta">November 2022</p></div>
-                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">Tech Law Forum, NALSAR</p><h4 class="pub-title"><a href="https://techlawforum.nalsar.ac.in/cert-in-directions-on-cybersecurity-2022-for-the-better-or-worse/" target="_blank">CERT In Directions on Cybersecurity, 2022: For the Better or Worse?</a></h4><p class="pub-meta">July 2022</p></div>
-                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">Nishith Desai Associates</p><h4 class="pub-title"><a href="https://natlawreview.com/article/subscription-credit-facilities-time-aifs-india-to-embrace-subscription-credit-lines" target="_blank">Subscription Credit Facilities: Time for AIFs in India to Embrace Credit Lines?</a></h4><p class="pub-meta">August 2022</p></div>
-                <div class="pub-card reveal"><p class="pub-category fintech">FinTech and Regulation</p><p class="pub-platform">IndiaCorpLaw</p><h4 class="pub-title"><a href="https://indiacorplaw.in/2022/01/the-jpc-report-on-personal-data-protection-bill-what-is-in-it-for-indian-startups.html" target="_blank">The JPC Report on Personal Data Protection Bill: What is In It for Indian Startups?</a></h4><p class="pub-meta">January 2022</p></div>
-                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">JURIST (University of Pittsburgh)</p><h4 class="pub-title"><a href="https://www.jurist.org/commentary/2021/06/parashar-shekar-whatsapp-encryption-privacy/" target="_blank">WhatsApp and the End to End Encryption Saga: Government Guidelines vs. Right to Privacy</a></h4><p class="pub-meta">July 2021</p></div>
-                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">The Fletcher Forum of World Affairs</p><h4 class="pub-title"><a href="https://www.fletcherforum.org/the-rostrum/2020/8/22/the-hagia-sophia-conversion-are-democracies-around-the-world-turning-majoritarian" target="_blank">The Hagia Sophia Conversion: Are Democracies Around The World Turning Majoritarian?</a></h4><p class="pub-meta">August 2020</p></div>
-                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">Oxford Political Review</p><h4 class="pub-title"><a href="https://oxfordpoliticalreview.com/2020/08/03/the-hagia-sophia-decision/" target="_blank">The Hagia Sophia Decision: Majoritarian Views Undermining Rule of Law</a></h4><p class="pub-meta">August 2020</p></div>
-                <div class="pub-card reveal"><p class="pub-category international">International Affairs</p><p class="pub-platform">JURIST (University of Pittsburgh)</p><h4 class="pub-title"><a href="https://www.jurist.org/commentary/2020/09/raj-shekhar-bru-tribe-exodus-india/" target="_blank">Bru Tribe's Exodus in India: A Crisis of Citizenship and Belonging</a></h4><p class="pub-meta">September 2020</p></div>
-                <div class="pub-card reveal"><p class="pub-category policy">Public Policy</p><p class="pub-platform">Law and Other Things</p><h4 class="pub-title"><a href="https://lawandotherthings.com/lost-in-rubble-bull-dozing-the-rule-of-law-and-spirit-of-democracy-part-i/" target="_blank">Lost in Rubble: Bull Dozing the Rule of Law and Spirit of Democracy</a></h4><p class="pub-meta">October 2022</p></div>
-            </div>
+  const mobile=innerWidth<768;
+  const COUNT=mobile?500:1600;
+  const geo=new THREE.BufferGeometry();
+  const pos=new Float32Array(COUNT*3),col=new Float32Array(COUNT*3),spd=new Float32Array(COUNT);
+  const palette=[[1,.6,.2],[.96,.95,.93],[.11,.73,.33]];
+  for(let i=0;i<COUNT;i++){
+    pos[i*3]=(Math.random()-.5)*22;pos[i*3+1]=(Math.random()-.5)*14;pos[i*3+2]=(Math.random()-.5)*10;
+    const c=palette[Math.floor(Math.random()*3)];col[i*3]=c[0];col[i*3+1]=c[1];col[i*3+2]=c[2];
+    spd[i]=.2+Math.random()*.8;
+  }
+  geo.setAttribute('position',new THREE.BufferAttribute(pos,3));
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3));
+  const pts=new THREE.Points(geo,new THREE.PointsMaterial({size:mobile?.05:.04,vertexColors:true,transparent:true,opacity:.85,depthWrite:false,blending:THREE.AdditiveBlending}));
+  scene.add(pts);
 
-            <div style="text-align: center; margin-top: 3rem;"><a href="mailto:rajshekhar.law@gmail.com?subject=Request for Full Publications List" class="btn btn-saffron">Request Full Publications List</a></div>
-        </div>
-    </section>
+  const wires=[];
+  const mats=[new THREE.MeshBasicMaterial({color:0xFF9933,wireframe:true,transparent:true,opacity:.14}),
+              new THREE.MeshBasicMaterial({color:0x1DB954,wireframe:true,transparent:true,opacity:.12}),
+              new THREE.MeshBasicMaterial({color:0xF4F2EC,wireframe:true,transparent:true,opacity:.07})];
+  const geos=[new THREE.IcosahedronGeometry(1.5,0),new THREE.TorusGeometry(1.2,.35,8,24),new THREE.OctahedronGeometry(1.1,0)];
+  const places=[[-6,2.2,-2],[6,-2,-3],[4.5,3,-4]];
+  for(let i=0;i<3;i++){const m=new THREE.Mesh(geos[i],mats[i]);m.position.set(...places[i]);scene.add(m);wires.push(m)}
 
-    <div class="flag-divider"></div>
+  let tx=0,ty=0;
+  addEventListener('mousemove',e=>{tx=(e.clientX/innerWidth-.5);ty=(e.clientY/innerHeight-.5)});
+  function resize(){const w=canvas.clientWidth||innerWidth,h=canvas.clientHeight||innerHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}
+  addEventListener('resize',resize);resize();
 
-    <section id="expertise">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">Competencies</div>
-                <h2 class="section-title">Areas of Expertise</h2>
-                <p class="section-subtitle">Where legal precision meets policy strategy</p>
-            </div>
+  const clock=new THREE.Clock();
+  (function animate(){
+    requestAnimationFrame(animate);
+    const t=clock.getElapsedTime();
+    const p=geo.attributes.position.array;
+    for(let i=0;i<COUNT;i++){p[i*3+1]+=Math.sin(t*spd[i]+i)*.0009;p[i*3]+=Math.cos(t*spd[i]*.7+i)*.0006}
+    geo.attributes.position.needsUpdate=true;
+    pts.rotation.y=t*.02;
+    wires.forEach((w,i)=>{w.rotation.x=t*(.12+i*.04);w.rotation.y=t*(.09+i*.05);w.position.y=places[i][1]+Math.sin(t*.5+i*2)*.4});
+    camera.position.x+=(tx*1.6-camera.position.x)*.04;
+    camera.position.y+=(-ty*1.2-camera.position.y)*.04;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  })();
+})();
 
-            <div class="expertise-grid">
-                <div class="expertise-card reveal"><div class="expertise-icon">🏛️</div><h3>Legislative and Parliamentary</h3><ul class="expertise-list"><li>Legislative Research and Bill Analysis</li><li>Parliamentary Process and Procedure</li><li>Regulatory Impact Assessment</li><li>Policy Brief Development</li><li>Governance Reform Strategy</li></ul></div>
-                <div class="expertise-card reveal"><div class="expertise-icon">💼</div><h3>FinTech and Technology Law</h3><ul class="expertise-list"><li>RBI Regulations and Compliance</li><li>Data Privacy and Protection</li><li>Payment Systems</li><li>Digital Lending Frameworks</li><li>Cybersecurity Compliance</li></ul></div>
-                <div class="expertise-card reveal"><div class="expertise-icon">🌏</div><h3>International and Diplomatic</h3><ul class="expertise-list"><li>Youth Diplomacy (G20/Y20)</li><li>ASEAN Policy Engagement</li><li>Commonwealth Affairs</li><li>Track II Diplomacy</li><li>Comparative Governance</li></ul></div>
-            </div>
-        </div>
-    </section>
+/* ============================================================
+   PUBLICATIONS — live from Google Sheets
+   ============================================================ */
+let PUBS=[];
+function parseCSV(text){
+  const rows=[];let row=[],f='',q=false;
+  for(let i=0;i<text.length;i++){const c=text[i];
+    if(q){if(c==='"'){if(text[i+1]==='"'){f+='"';i++}else q=false}else f+=c}
+    else{if(c==='"')q=true;else if(c===','){row.push(f);f=''}
+      else if(c==='\n'||c==='\r'){if(f!==''||row.length){row.push(f);rows.push(row);row=[];f=''}if(c==='\r'&&text[i+1]==='\n')i++}
+      else f+=c}}
+  if(f!==''||row.length){row.push(f);rows.push(row)}
+  return rows;
+}
+const CAT={fintech:'FinTech & Regulation',policy:'Public Policy',international:'International Affairs'};
+async function loadPubs(){
+  const grid=document.getElementById('pubGrid');
+  grid.innerHTML='<div class="pub-state">Summoning the archive…</div>';
+  try{
+    const res=await fetch(SITE.publicationsCSV,{cache:'no-store'});
+    if(!res.ok)throw 0;
+    const rows=parseCSV(await res.text());
+    const head=rows[0].map(h=>h.trim().toLowerCase());
+    PUBS=rows.slice(1).map(r=>{const o={};head.forEach((h,i)=>o[h]=(r[i]||'').trim());return o}).filter(p=>p.title);
+    renderPubs('all');
+  }catch(e){
+    grid.innerHTML='<div class="pub-state">Could not reach the archive. Check the Google Sheet link, or try again.</div>';
+  }
+}
+function renderPubs(filter){
+  const grid=document.getElementById('pubGrid');
+  const list=PUBS.filter(p=>filter==='all'||(p.category||'').toLowerCase()===filter);
+  if(!list.length){grid.innerHTML='<div class="pub-state">Nothing here yet — add rows to the sheet and refresh.</div>';return}
+  grid.innerHTML=list.map(p=>{
+    const cat=(p.category||'policy').toLowerCase();
+    const inner=`<span class="cat ${cat}">${CAT[cat]||'Writing'}</span><h3>${p.title}</h3><div class="meta"><span>${p.publisher||''}</span><span>${p.date||''}</span></div>`;
+    return p.url?`<a class="pub" href="${p.url}" target="_blank" rel="noopener">${inner}</a>`:`<div class="pub">${inner}</div>`;
+  }).join('');
+}
+document.getElementById('pubFilters').addEventListener('click',e=>{
+  if(!e.target.classList.contains('pf'))return;
+  document.querySelectorAll('.pf').forEach(b=>b.classList.remove('on'));
+  e.target.classList.add('on');renderPubs(e.target.dataset.f);
+});
+loadPubs();
 
-    <section id="contact">
-        <div class="section-inner">
-            <div class="section-header">
-                <div class="section-eyebrow">Get in Touch</div>
-                <h2 class="section-title">Let's Connect</h2>
-                <p class="section-subtitle">Open to conversations on policy, governance, and strategic communications</p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-info reveal">
-                    <h3>Ready to Collaborate?</h3>
-                    <p>Whether you need policy research, strategic communications, or someone who understands both the legal and political dimensions of governance, let's talk.</p>
-                    <div class="contact-item"><div class="contact-icon">📧</div><div class="contact-text"><strong>Email</strong><a href="mailto:rajshekhar.law@gmail.com">rajshekhar.law@gmail.com</a></div></div>
-                    <div class="contact-item"><div class="contact-icon">💼</div><div class="contact-text"><strong>LinkedIn</strong><a href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener">linkedin.com/in/rajshekharlaw</a></div></div>
-                    <div class="contact-item"><div class="contact-icon">📍</div><div class="contact-text"><strong>Location</strong><span>New Delhi, India</span></div></div>
-                </div>
-
-                <div class="contact-form-wrapper reveal">
-                    <form action="https://formspree.io/f/your-form-id" method="POST">
-                        <div class="form-group"><label for="name">Your Name</label><input type="text" id="name" name="name" required placeholder="Enter your name"></div>
-                        <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" required placeholder="Enter your email"></div>
-                        <div class="form-group"><label for="subject">Subject</label><input type="text" id="subject" name="subject" required placeholder="What would you like to discuss?"></div>
-                        <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" required placeholder="Your message..."></textarea></div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-inner">
-            <p class="footer-copy">© 2025 Raj Shekhar. All rights reserved.</p>
-            <div class="footer-links">
-                <a href="https://www.linkedin.com/in/rajshekharlaw/" target="_blank" rel="noopener">LinkedIn</a>
-                <a href="mailto:rajshekhar.law@gmail.com">Email</a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        // Navigation
-        document.getElementById('navToggle').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('active'));
-        document.querySelectorAll('.nav-links a').forEach(link => link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('active')));
-        window.addEventListener('scroll', () => document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50));
-
-        // Reveal animations
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Smooth scroll
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
-
-        /*
-        =====================================================
-        DYNAMIC PUBLICATIONS FROM GOOGLE SHEETS
-        =====================================================
-        
-        To enable dynamic publications:
-        
-        1. Create a Google Sheet with columns:
-           Title | URL | Publisher | Category | Date
-           
-           Category values: fintech, policy, international
-        
-        2. File > Share > Publish to web > CSV format
-        3. Replace YOUR_SHEET_ID below
-        4. Uncomment loadPublications() at bottom
-        =====================================================
-        */
-        
-        const SHEET_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT8Krbb25vCYV-0SEigQIdB9TAB9j8l-MLs_zzOvhYNiCBXM-rwP1VWPJA-3Q7RfggcoJL6cune351A/pub?gid=0&single=true&output=csv';
-
-        async function loadPublications() {
-            try {
-                const response = await fetch(SHEET_CSV_URL);
-                if (!response.ok) throw new Error('Sheet not found');
-                const csv = await response.text();
-                const pubs = parseCSV(csv);
-                if (pubs.length > 0) renderPublications(pubs);
-            } catch (e) {
-                console.log('Using static publications');
-            }
-        }
-
-        function parseCSV(csv) {
-            const lines = csv.split('\n');
-            const headers = lines[0].split(',').map(h => h.trim().toLowerCase());
-            return lines.slice(1).filter(l => l.trim()).map(line => {
-                const vals = line.match(/(".*?"|[^,]+)/g) || [];
-                const pub = {};
-                headers.forEach((h, i) => pub[h] = vals[i] ? vals[i].replace(/^"|"$/g, '').trim() : '');
-                return pub;
-            }).filter(p => p.title);
-        }
-
-        function renderPublications(pubs) {
-            document.getElementById('publicationsGrid').innerHTML = pubs.map(p => `
-                <div class="pub-card reveal visible">
-                    <p class="pub-category ${p.category || 'policy'}">${{fintech:'FinTech and Regulation',policy:'Public Policy',international:'International Affairs'}[p.category] || 'Publication'}</p>
-                    <p class="pub-platform">${p.publisher || ''}</p>
-                    <h4 class="pub-title">${p.url ? `<a href="${p.url}" target="_blank">${p.title}</a>` : p.title}</h4>
-                    <p class="pub-meta">${p.date || ''}</p>
-                </div>
-            `).join('');
-        }
-
-        // Uncomment after setting up Google Sheet:
-        loadPublications();
-    </script>
+/* ============================================================
+   ADMIN
+   ============================================================ */
+const overlay=document.getElementById('adminOverlay');
+function openAdmin(){overlay.classList.add('open');document.getElementById('adminPass').focus()}
+function closeAdmin(){overlay.classList.remove('open')}
+document.getElementById('adminDot').addEventListener('click',openAdmin);
+if(location.hash==='#admin')setTimeout(openAdmin,1600);
+addEventListener('hashchange',()=>{if(location.hash==='#admin')openAdmin()});
+document.getElementById('adminClose').addEventListener('click',closeAdmin);
+overlay.addEventListener('click',e=>{if(e.target===overlay)closeAdmin()});
+function tryLogin(){
+  const v=document.getElementById('adminPass').value;
+  if(v===SITE.adminPassword){
+    document.getElementById('adminLogin').style.display='none';
+    document.getElementById('adminDash').style.display='block';
+    document.getElementById('sheetEditBtn').href=SITE.sheetEditURL;
+    document.getElementById('ghEditBtn').href=SITE.githubEditURL;
+  }else{document.getElementById('adminErr').style.display='block'}
+}
+document.getElementById('adminGo').addEventListener('click',tryLogin);
+document.getElementById('adminPass').addEventListener('keydown',e=>{if(e.key==='Enter')tryLogin()});
+document.getElementById('refreshPubs').addEventListener('click',()=>{loadPubs();closeAdmin();document.getElementById('publications').scrollIntoView({behavior:'smooth'})});
+</script>
 </body>
 </html>
